@@ -1,0 +1,26 @@
+import React from 'react';
+import Moment from 'moment';
+
+
+class Event extends React.Component {
+    constructor() {
+        super();
+    }
+
+    RenderDate() {
+        Moment(this.props.date);
+    }
+
+    render() {
+        return <div className='event' id={ this.props.id }>
+        <h3>{ this.props.name }</h3>
+        { this.props.date }
+       { this.RenderDate() }
+        <h4>{ this.props.loc }</h4>
+        <p>{ this.props.desc }</p>
+    </div>
+    }
+
+}
+
+export default Event;
