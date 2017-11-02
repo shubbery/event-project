@@ -1,7 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
+import App from './components/app';
 
-// Replace this with your own components
-const Hello = () => <p>Hello, world!</p>;
-
-render(<Hello />, document.getElementById('app'));
+render(<App />, document.getElementById('app'));
