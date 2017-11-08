@@ -12,7 +12,7 @@ class App extends React.Component {
             { 
                 id: 1,
                 name: 'HackerYou class',
-                date: '2018-01-30 19:00',
+                date: '2018-01-30 19:00', //find a way to get this style of timestamp from a date picker
                 loc: 'HackerYou',
                 desc: 'A full snack class'
             },
