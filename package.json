@@ -14,6 +14,11 @@
     "gulp-notify": "^3.0.0",
     "gulp-plumber": "^1.1.0",
     "gulp-sass": "^3.1.0",
+<<<<<<< HEAD
+=======
+    "moment": "^2.19.1",
+    "mongoose": "^4.13.0",
+>>>>>>> ad10cef730696e32dc6dbcd7a1f0d03e7a59f11c
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "vinyl-buffer": "^1.0.0",
