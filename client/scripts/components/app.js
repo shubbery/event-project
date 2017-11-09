@@ -1,32 +1,26 @@
 import React from 'react';
+import eventData from '../eventData';
 import Event from './event';
+import NewEvent from './newEvent';
 import Moment from 'moment';
-
 
 class App extends React.Component {
   constructor() {
     super();
+    this.addEvent = this.addEvent.bind(this);
     this.state = {
         appName: 'Bean Sprout',
-        events: [
-            { 
-                id: 1,
-                name: 'HackerYou class',
-                date: '2018-01-30 19:00',
-                loc: 'HackerYou',
-                desc: 'A full snack class'
-            },
-            { 
-                id: 2,
-                name: 'HackerYou demo night',
-                date: '2018-02-18 19:00',
-                loc: 'HackerYou',
-                desc: 'Full snack demo night'    
-            }
-        ]
+        events: eventData,
+        createMode: false,
     }
   }
-
+  addEvent(e){
+    e.preventDefault();
+    console.log('%c🙏', 'font-size:100px');
+    this.setState({
+      createMode: true,
+    });
+  }
   render() {
     return <div className='app'>
       <div className='intro'>
@@ -35,10 +29,11 @@ class App extends React.Component {
                                         {...event} 
                                         />
                                         )}
+          <button onClick={this.addEvent}>NEW EVENT</button>
+          {this.state.createMode ? <NewEvent /> : null }
       </div>
     </div>
   }
-
   componentDidMount() {
     // fetch('/api/pets')
     // .then(res => res.json())
