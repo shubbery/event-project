@@ -7,30 +7,38 @@ import Moment from 'moment';
 class App extends React.Component {
   constructor() {
     super();
-    this.addEvent = this.addEvent.bind(this);
+    this.addNewEvent = this.addNewEvent.bind(this);
+    this.closeNewEvent = this.closeNewEvent.bind(this);
     this.state = {
         appName: 'Bean Sprout',
         events: eventData,
         createMode: false,
     }
   }
-  addEvent(e){
+  addNewEvent(e){
     e.preventDefault();
-    console.log('%c🙏', 'font-size:100px');
     this.setState({
       createMode: true,
+    });
+  }
+  closeNewEvent(e){
+    e.preventDefault();
+    this.setState({
+      createMode: false,
     });
   }
   render() {
     return <div className='app'>
       <div className='intro'>
           <h1>{ this.state.appName }</h1>
+          <div className='eventList'>
           { this.state.events.map(event => <Event key={event.id}
                                         {...event} 
                                         />
                                         )}
-          <button onClick={this.addEvent}>NEW EVENT</button>
-          {this.state.createMode ? <NewEvent mode={this.state.createMode} /> : null }
+          </div>
+          <button onClick={this.addNewEvent}>NEW EVENT</button>
+          {this.state.createMode ? <NewEvent close={this.closeNewEvent}  /> : null }
       </div>
     </div>
   }
