@@ -4,9 +4,14 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-const Event = require('./api/Events/model.js');
+const events = require("./api/Events/controller");
+//require the controller because it imports the schema with it
 const Board = require('./api/Boards/model.js');
 const Card = require('./api/Cards/model.js');
+
+//THE DATABASE
+app.use(bodyParser.json());
+mongoose.connect("mongodb://localhost/events");
 
 // This serves all files placed in the /public
 // directory (where gulp will build all React code)
@@ -18,6 +23,15 @@ app.use(express.static('assets'));
 
 // Include your own logic here (so it has precedence over the wildcard
 // route below)
+
+//GET yer events
+app.get('/api/events', events.getEvents);
+//POST yer events (new ones specifically)
+app.post('/api/events', events.postEvent);
+//PUT yer events (to edit them)
+app.put('/api/events/:id', events.editEvent);
+//DELETE yer events (especially the garbage ones)
+app.delete('/api/events/:id', events.deleteEvent);
 
 // This route serves your index.html file (which
 // initializes React)

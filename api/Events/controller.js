@@ -49,7 +49,7 @@ events.deleteEvent = (req, res) => {
             //if there's an error, the server f*cked up!
             res.status(500).send(err);
         } else {
-            res.status(200).json({ message: "💀 Event has been deleted 💀"; });
+            res.status(200).json({ message: '💀 Event has been deleted 💀' });
         }
     });
 }
