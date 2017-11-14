@@ -30,7 +30,7 @@ class App extends React.Component {
                                         />
                                         )}
           <button onClick={this.addEvent}>NEW EVENT</button>
-          {this.state.createMode ? <NewEvent /> : null }
+          {this.state.createMode ? <NewEvent mode={this.state.createMode} /> : null }
       </div>
     </div>
   }

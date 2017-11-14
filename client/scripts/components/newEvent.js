@@ -33,8 +33,8 @@ class NewEvent extends React.Component{
     }
 
     render(){
-        return <form action="">
-            <div>x</div>
+        return <form>
+            <button onClick={ this.props.mode === false }>x</button>
             <input type="text" placeholder="Event Title" name="title" id="title" onChange={(e) => this.handleInputChange('name', e.target.value)}/>
             <div className="input">
                 <input type="text" value={this.state.date.format()} readOnly />
