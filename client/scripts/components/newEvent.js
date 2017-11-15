@@ -7,7 +7,9 @@ class NewEvent extends React.Component{
         super();
         this.handleChange = this.handleChange.bind(this);
         this.handleSave = this.handleSave.bind(this);
+        this.togglePicker = this.togglePicker.bind(this);
         this.state = {
+            picker: false,
             date: Moment(),
             desc: '',
             name: '',
@@ -27,6 +29,10 @@ class NewEvent extends React.Component{
         });
     }
 
+    togglePicker(e){
+        this.state.picker === false ? this.setState({ picker: true }) : this.setState({ picker: false })
+    }
+
     handleSave(e){
         e.preventDefault();
         console.log('saved', this.state);
@@ -36,17 +42,12 @@ class NewEvent extends React.Component{
         return <form className='modal'>
             <button onClick={ this.props.close }>x</button>
             <input type="text" placeholder="Event Title" name="title" id="title" onChange={(e) => this.handleInputChange('name', e.target.value)}/>
-            <div className="input">
-                <input type="text" value={this.state.date.format()} readOnly />
-            </div>
-            <InputMoment
-                moment={this.state.date}
-                onChange={this.handleChange}
-                minStep={1} // default
-                hourStep={1} // default
-                prevMonthIcon="ion-ios-arrow-left" // default
-                nextMonthIcon="ion-ios-arrow-right" // default
-            />
+            <input type="text" value={ this.state.date.format('MMMM Do, YYYY') + ' @ ' + this.state.date.format('LT') } onFocus={ this.togglePicker } readOnly />
+            { this.state.picker === true ? <InputMoment
+                moment={ this.state.date }
+                onChange={ this.handleChange } 
+                onSave={ this.togglePicker }
+            /> : null }
             <input type="text" name="loc" id="loc" placeholder="Location" onChange={(e) => this.handleInputChange('loc', e.target.value)}/>
             <textarea name="desc" id="desc" cols="30" rows="10" placeholder="Description Here" onChange={(e) => this.handleInputChange('desc', e.target.value)}></textarea>
             <button onClick={(e) => this.handleSave(e)}>Save</button>
