@@ -6,8 +6,8 @@ const bodyParser = require('body-parser');
 
 const events = require("./api/Events/controller");
 //require the controller because it imports the schema with it
-const Board = require('./api/Boards/model.js');
-const Card = require('./api/Cards/model.js');
+// const Board = require('./api/Boards/model.js');
+// const Card = require('./api/Cards/model.js');
 
 //THE DATABASE
 app.use(bodyParser.json());
