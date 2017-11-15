@@ -16,28 +16,37 @@ class NewEvent extends React.Component{
             loc: ''
         };
     }
-
     handleInputChange(key, value) {
         this.setState({
         [key]: value,
         });
     }
-
     handleChange(m){
         this.setState({
         date: m,
         });
     }
-
     togglePicker(e){
         this.state.picker === false ? this.setState({ picker: true }) : this.setState({ picker: false })
     }
-
     handleSave(e){
         e.preventDefault();
         console.log('saved', this.state);
-    }
+        
+        const event_req = this.state;
+        delete event_req["picker"];
+        console.log(event_req);
 
+        const newEvent = Object.assign({}, event_req);
+        console.log(newEvent);
+        fetch("/api/events", {
+            method: "POST",
+            body: JSON.stringify(newEvent),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(() => this.props.fetchEvents());
+    }
     render(){
         return <form className='modal'>
             <button onClick={ this.props.close }>x</button>

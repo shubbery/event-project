@@ -8,7 +8,7 @@ class Event extends React.Component {
     }
 
     render() {
-        return <div className='event' id={ this.props.id }>
+        return <div className='event' id={ this.props._id }>
             <h3>{ this.props.name }</h3>
             <h6>{ Moment(this.props.date).format('MMMM Do, YYYY') } at { Moment(this.props.date).format('LT') }</h6>
             <h4>@ { this.props.loc }</h4>
