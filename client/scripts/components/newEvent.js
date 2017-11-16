@@ -5,7 +5,7 @@ import InputMoment from 'input-moment';
 class NewEvent extends React.Component{
     constructor(){
         super();
-        this.handleChange = this.handleChange.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
         this.handleSave = this.handleSave.bind(this);
         this.togglePicker = this.togglePicker.bind(this);
         this.state = {
@@ -21,7 +21,7 @@ class NewEvent extends React.Component{
         [key]: value,
         });
     }
-    handleChange(m){
+    handleDateChange(m){
         this.setState({
         date: m,
         });
@@ -45,16 +45,20 @@ class NewEvent extends React.Component{
             headers: {
                 "Content-Type": "application/json"
             }
-        }).then(() => this.props.fetchEvents());
+        })
+        .then(() => {
+            this.props.fetchEvents();
+            this.props.close();
+        });
     }
     render(){
         return <form className='modal'>
-            <button onClick={ this.props.close }>x</button>
+            <button onClick={ this.props.prep }>x</button>
             <input type="text" placeholder="Event Title" name="title" id="title" onChange={(e) => this.handleInputChange('name', e.target.value)}/>
             <input type="text" value={ this.state.date.format('MMMM Do, YYYY') + ' @ ' + this.state.date.format('LT') } onFocus={ this.togglePicker } readOnly />
             { this.state.picker === true ? <InputMoment
                 moment={ this.state.date }
-                onChange={ this.handleChange } 
+                onChange={ this.handleDateChange } 
                 onSave={ this.togglePicker }
             /> : null }
             <input type="text" name="loc" id="loc" placeholder="Location" onChange={(e) => this.handleInputChange('loc', e.target.value)}/>

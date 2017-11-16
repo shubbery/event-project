@@ -8,6 +8,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.addNewEvent = this.addNewEvent.bind(this);
+    this.prepareClose = this.prepareClose.bind(this);
     this.closeNewEvent = this.closeNewEvent.bind(this);
     this.fetchEvents = this.fetchEvents.bind(this);
     this.state = {
@@ -22,8 +23,11 @@ class App extends React.Component {
       createMode: true
     });
   }
-  closeNewEvent(e) {
+  prepareClose(e){
     e.preventDefault();
+    this.closeNewEvent();
+  }
+  closeNewEvent() {
     this.setState({
       createMode: false
     });
@@ -48,7 +52,7 @@ class App extends React.Component {
           </div>
           <button onClick={this.addNewEvent}>NEW EVENT</button>
           {this.state.createMode ? (
-            <NewEvent fetchEvents={this.fetchEvents} close={this.closeNewEvent} />
+            <NewEvent fetchEvents={this.fetchEvents} close={this.closeNewEvent} prep={this.prepareClose} />
           ) : null}
         </div>
       </div>
