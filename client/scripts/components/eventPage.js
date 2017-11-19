@@ -1,5 +1,11 @@
 import React from 'react';
+<<<<<<< HEAD
 import DeleteModal from './deleteModal';
+=======
+import Moment from 'moment';
+
+import Navigation from './navigation';
+>>>>>>> e44e0fccf13d0144ac74180a837654c8c3fac2f5
 
 class EventPage extends React.Component {
     constructor() {
@@ -8,7 +14,11 @@ class EventPage extends React.Component {
         this.deleteEvent = this.deleteEvent.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.state = {
+<<<<<<< HEAD
             deleteModal: false
+=======
+
+>>>>>>> e44e0fccf13d0144ac74180a837654c8c3fac2f5
         }
     }
     editEvent(e){
@@ -41,7 +51,7 @@ class EventPage extends React.Component {
         });
     }
     render() {
-        return <div className="event-page">
+        return <div className="event-page" id={ this.state._id }>
             <ul className="admin-navigation">
               <li>
                 <a href="" onClick={this.editEvent}>
@@ -55,7 +65,11 @@ class EventPage extends React.Component {
                 {this.state.deleteModal ? (<DeleteModal closeModal={this.closeModal} deleteEvent={this.deleteEvent}/>) : null}
               </li>
             </ul>
-            <pre>{JSON.stringify(this.state, null, 3)}</pre>
+            <h1>{ this.state.name }</h1>
+            <h6>{ Moment(this.state.date).format('MMMM Do, YYYY') } at { Moment(this.state.date).format('LT') }</h6>
+            <h4>@ { this.state.loc }</h4>
+            <p>{ this.state.desc }</p>
+            <Navigation />
           </div>;
     }
 }
