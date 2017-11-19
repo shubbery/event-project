@@ -1,7 +1,8 @@
 import React from 'react';
-import EventCard from './eventCard';
 import Moment from 'moment';
-import Navigation from './navigation';
+
+import EventCard from './eventCard';
+import Navigation from '../navigation';
 
 class App extends React.Component {
   constructor() {

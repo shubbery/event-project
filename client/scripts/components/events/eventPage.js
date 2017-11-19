@@ -1,8 +1,8 @@
 import React from 'react';
 import Moment from 'moment';
 
-import DeleteModal from './deleteModal';
-import Navigation from './navigation';
+import DeleteModal from '../deleteModal';
+import Navigation from '../navigation';
 
 class EventPage extends React.Component {
     constructor() {
