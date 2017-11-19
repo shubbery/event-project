@@ -12,7 +12,6 @@ class App extends React.Component {
     this.closeNewEvent = this.closeNewEvent.bind(this);
     this.fetchEvents = this.fetchEvents.bind(this);
     this.state = {
-      appName: "Bean Sprout",
       events: [],
       createMode: false,
     };
@@ -41,21 +40,17 @@ class App extends React.Component {
     this.fetchEvents();
   }
   render() {
-    return (
-      <div className="app">
-        <div className="intro">
-          <h1>{this.state.appName}</h1>
+    return ( <div>
           <div className="eventList">
-            {this.state.events.map(event => (
-              <EventCard key={event._id} {...event} />
-            ))}
+              {this.state.events.map(event => (
+                <EventCard key={event._id} {...event} />
+              ))}
           </div>
           <button onClick={this.addNewEvent}>NEW EVENT</button>
-          {this.state.createMode ? (
-            <NewEvent fetchEvents={this.fetchEvents} close={this.closeNewEvent} prep={this.prepareClose} />
-          ) : null}
+            {this.state.createMode ? (
+              <NewEvent fetchEvents={this.fetchEvents} close={this.closeNewEvent} prep={this.prepareClose} />
+            ) : null}
         </div>
-      </div>
     );
   }
 }

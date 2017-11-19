@@ -26,6 +26,7 @@ app.use(express.static('assets'));
 
 //GET yer events
 app.get('/api/events', events.getEvents);
+app.get('/api/events/:id', events.getEventById);
 //POST yer events (new ones specifically)
 app.post('/api/events', events.postEvent);
 //PUT yer events (to edit them)

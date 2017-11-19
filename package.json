@@ -25,7 +25,8 @@
   "devDependencies": {
     "express": "^4.16.2",
     "moment": "^2.19.1",
-    "mongoose": "^4.13.0"
+    "mongoose": "^4.13.0",
+    "react-router-dom": "^4.2.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

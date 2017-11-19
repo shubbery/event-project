@@ -17,6 +17,16 @@ events.getEvents = (req, res) => {
     });
 }
 
+events.getEventById = (req, res) => {
+    const eventId = req.params.id;
+    console.log(eventId);
+    Event.findOne({ 
+        _id: eventId 
+    }).then((doc) => {
+        res.status(200).send(doc);
+    });
+}
+
 
 //POST METHOD - adding new events
 events.postEvent = (req, res) => {
