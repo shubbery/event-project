@@ -1,8 +1,7 @@
 import React from 'react';
 import Moment from 'moment';
 
-
-class Event extends React.Component {
+class EventCard extends React.Component {
     constructor() {
         super();
     }
@@ -17,4 +16,4 @@ class Event extends React.Component {
     }
 }
 
-export default Event;
+export default EventCard;

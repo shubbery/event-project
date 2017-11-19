@@ -1,6 +1,6 @@
 import React from 'react';
 // import eventData from '../eventData';
-import Event from './event';
+import EventCard from './eventCard';
 import NewEvent from './newEvent';
 import Moment from 'moment';
 
@@ -47,7 +47,7 @@ class App extends React.Component {
           <h1>{this.state.appName}</h1>
           <div className="eventList">
             {this.state.events.map(event => (
-              <Event key={event._id} {...event} />
+              <EventCard key={event._id} {...event} />
             ))}
           </div>
           <button onClick={this.addNewEvent}>NEW EVENT</button>
