@@ -1,11 +1,8 @@
 import React from 'react';
-<<<<<<< HEAD
-import DeleteModal from './deleteModal';
-=======
 import Moment from 'moment';
 
+import DeleteModal from './deleteModal';
 import Navigation from './navigation';
->>>>>>> e44e0fccf13d0144ac74180a837654c8c3fac2f5
 
 class EventPage extends React.Component {
     constructor() {
@@ -14,11 +11,7 @@ class EventPage extends React.Component {
         this.deleteEvent = this.deleteEvent.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.state = {
-<<<<<<< HEAD
             deleteModal: false
-=======
-
->>>>>>> e44e0fccf13d0144ac74180a837654c8c3fac2f5
         }
     }
     editEvent(e){
