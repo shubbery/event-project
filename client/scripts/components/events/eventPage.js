@@ -4,6 +4,7 @@ import Moment from 'moment';
 import DeleteModal from '../deleteModal';
 import Navigation from '../navigation';
 import EditEvent from './editEvent';
+import ErrorAlert from '../errorAlert';
 
 class EventPage extends React.Component {
     constructor() {
@@ -11,10 +12,13 @@ class EventPage extends React.Component {
         this.editEvent = this.editEvent.bind(this);
         this.saveEdit = this.saveEdit.bind(this);
         this.deleteEvent = this.deleteEvent.bind(this);
+        this.getDeleteModal = this.getDeleteModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.deleteEvent = this.deleteEvent.bind(this);
         this.state = {
             deleteModal: false,
             editMode: false,
+            errorAlert: false
         }
     }
 
@@ -42,12 +46,29 @@ class EventPage extends React.Component {
             editMode: false
         });
     }
-    deleteEvent(e){
+    getDeleteModal(e){
         e.preventDefault();
-        console.log('deleteeeeeeeee');
-        console.log(this.props.match.params.eventId);
+        console.log('RELEASE THE KRAKEN');
         this.setState({
             deleteModal: true
+        });
+    }
+    deleteEvent(e){
+        e.preventDefault();
+        console.log('BYE FELICIA 👋');
+        const event_ID = this.props.match.params.eventId;
+        console.log(event_ID);
+
+        fetch(`/api/events/${event_ID}`, {
+            method: "DELETE"
+        }).then(res => {
+            console.log('deleeeeete');
+            // console.log(res);
+            document.location.replace('/dashboard');
+        }).catch(err => {
+            this.setState({
+                errorAlert: true
+            });
         });
     }
     closeModal(e){
@@ -75,10 +96,10 @@ class EventPage extends React.Component {
                 </a>
               </li>
               <li>
-                <a href="" onClick={this.deleteEvent}>
+                <a href="" onClick={this.getDeleteModal}>
                   💀💀💀
                 </a>
-                {this.state.deleteModal ? (<DeleteModal closeModal={this.closeModal} deleteEvent={this.deleteEvent}/>) : null}
+                {this.state.deleteModal ? (<DeleteModal closeModal={this.closeModal} getDeleteModal={this.getDeleteModal} deleteEvent={this.deleteEvent}/>) : null}
               </li>
             </ul>
             { this.state.editMode ? <EditEvent/> : <div><h1>{ this.state.name }</h1>
@@ -86,6 +107,7 @@ class EventPage extends React.Component {
             <h4>@ { this.state.loc }</h4>
             <p>{ this.state.desc }</p>
             </div>}
+            { this.state.errorAlert ? (<ErrorAlert />) : null }
             <Navigation />
           </div>;
     }

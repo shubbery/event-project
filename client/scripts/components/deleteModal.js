@@ -10,7 +10,7 @@ class DeleteModal extends React.Component{
             <a href="" className="cancel-delete" onClick={this.props.closeModal}>
               No. Let's keep it!
             </a>
-            <a href="" className="accept-delete">
+            <a href="" className="accept-delete" onClick={this.props.deleteEvent}>
               Yes. #YOLO!
             </a>
           </div>;
