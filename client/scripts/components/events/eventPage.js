@@ -15,13 +15,24 @@ class EventPage extends React.Component {
         this.getDeleteModal = this.getDeleteModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.deleteEvent = this.deleteEvent.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
         this.state = {
             deleteModal: false,
             editMode: false,
             errorAlert: false
         }
     }
-
+    handleInputChange(key, value) {
+        this.setState({
+        [key]: value,
+        });
+    }
+    handleDateChange(m){
+        this.setState({
+        date: m,
+        });
+    }
     editEvent(e){
         e.preventDefault();
         this.setState({
@@ -29,7 +40,7 @@ class EventPage extends React.Component {
         })
     }
     saveEdit(){
-        console.log('editttttttttt', this.props.match.params.eventId);
+        console.log('editttttttttt dis one:', this.props.match.params.eventId);
         const editEvent = Object.assign({}, this.state);
         fetch(`/api/events/${this.props.match.params.eventId}`, {
             method: "PUT",
@@ -102,9 +113,9 @@ class EventPage extends React.Component {
                 {this.state.deleteModal ? (<DeleteModal closeModal={this.closeModal} getDeleteModal={this.getDeleteModal} deleteEvent={this.deleteEvent}/>) : null}
               </li>
             </ul>
-            { this.state.editMode ? <EditEvent/> : <div><h1>{ this.state.name }</h1>
+            { this.state.editMode ? <EditEvent e={this.state} saveEdit={this.saveEdit} handleInputChange={this.handleInputChange} handleDateChange={this.handleDateChange} /> : <div><h1>{ this.state.name }</h1>
             <h6>{ Moment(this.state.date).format('MMMM Do, YYYY') } at { Moment(this.state.date).format('LT') }</h6>
-            <h4>@ { this.state.loc }</h4>
+            <h4>@{ this.state.loc }</h4>
             <p>{ this.state.desc }</p>
             </div>}
             { this.state.errorAlert ? (<ErrorAlert />) : null }

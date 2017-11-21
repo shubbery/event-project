@@ -5,64 +5,26 @@ import InputMoment from 'input-moment';
 class EditEvent extends React.Component{
     constructor(){
         super();
-        this.handleDateChange = this.handleDateChange.bind(this);
-        this.handleSave = this.handleSave.bind(this);
         this.togglePicker = this.togglePicker.bind(this);
         this.state = {
-            picker: false,
-            date: Moment(),
-            desc: '',
-            name: '',
-            loc: ''
+            picker: false
         };
-    }
-    handleInputChange(key, value) {
-        this.setState({
-        [key]: value,
-        });
-    }
-    handleDateChange(m){
-        this.setState({
-        date: m,
-        });
     }
     togglePicker(e){
         this.state.picker === false ? this.setState({ picker: true }) : this.setState({ picker: false })
     }
-    handleSave(e){
-        e.preventDefault();
-        console.log('saved', this.state);
-        
-        const event_req = this.state;
-        delete event_req["picker"];
-        console.log(event_req);
-
-        const newEvent = Object.assign({}, event_req);
-        console.log(newEvent);
-        fetch("/api/events", {
-            method: "POST",
-            body: JSON.stringify(newEvent),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-        .then(() => {
-            this.props.fetchEvents();
-            this.props.close();
-        });
-    }
     render(){
         return <form className='edit-mode'>
-            <input type="text" value={ this.state.name } name="title" id="title" onChange={(e) => this.handleInputChange('name', e.target.value)}/>
-            <input type="text" value={ this.state.date.format('MMMM Do, YYYY') + ' @ ' + this.state.date.format('LT') } onFocus={ this.togglePicker } readOnly />
+            <input type="text" value={ this.props.e.name } name="title" id="title" onChange={(e) => this.props.handleInputChange('name', e.target.value)}/>
+            <input type="text" value={ Moment(this.props.e.date).format('MMMM Do, YYYY') + ' @ ' + Moment(this.props.e.date).format('LT') } onFocus={ this.togglePicker } readOnly />
             { this.state.picker === true ? <InputMoment
-                moment={ this.state.date }
-                onChange={ this.handleDateChange } 
+                moment={ this.props.e.date }
+                onChange={ this.props.handleDateChange } 
                 onSave={ this.togglePicker }
             /> : null }
-            <input type="text" name="loc" id="loc" value={ this.state.loc } onChange={(e) => this.handleInputChange('loc', e.target.value)}/>
-            <textarea name="desc" id="desc" cols="30" rows="10" value={ this.state.desc } onChange={(e) => this.handleInputChange('desc', e.target.value)}></textarea>
-            <button onClick={(e) => this.handleSave(e)}>Save</button>
+            <input type="text" name="loc" id="loc" value={ this.props.e.loc } onChange={(e) => this.props.handleInputChange('loc', e.target.value)}/>
+            <textarea name="desc" id="desc" cols="30" rows="10" value={ this.props.e.desc } onChange={(e) => this.props.handleInputChange('desc', e.target.value)}></textarea>
+            {<button onClick={(e) => this.props.saveEdit(e)}>Save</button>}
         </form>
     }
 }
