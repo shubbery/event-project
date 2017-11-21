@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './components/app';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import EventPage from './components/eventPage';
+import Dashboard from './components/events/dashboard';
+import EventPage from './components/events/eventPage';
 
 class AppLayout extends React.Component {
     constructor() {
@@ -23,7 +23,7 @@ class AppLayout extends React.Component {
                 <Route
                     exact
                     path="/dashboard"
-                    render={() => <App /> } 
+                    render={() => <Dashboard /> } 
                 />
                 <Route path="/events/:eventId" component={EventPage} />
                 </div>

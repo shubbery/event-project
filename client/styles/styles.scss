@@ -4,6 +4,11 @@
 
 body {
     font-family: $font-stack;
+    color: $font-color-grey;
+}
+a {
+    text-decoration: none;
+    color: $font-color-grey;
 }
 .container {
     width: 80%;
@@ -16,12 +21,16 @@ body {
 }
 .event {
     background-color: $bg-grey;
-    width: 20%;
-    margin: 2%;
-    padding: 1%;
-    border: 3px solid black;
+    width: 190px;
+    height: 190px;
+    margin: 15px;
+    padding: 10px;
+    border: 3px solid $font-color-grey;
     border-radius: 5px;
-    color:rgb(49, 47, 47);
+    color:$font-color-grey;
+    * {
+        margin: 0;
+    }
 }
 button {
     border-radius: 3px;

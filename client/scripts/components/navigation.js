@@ -1,5 +1,5 @@
 import React from 'react';
-import NewEvent from './newEvent';
+import NewEvent from './events/newEvent';
 
 class Navigation extends React.Component {
   constructor() {
