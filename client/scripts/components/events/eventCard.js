@@ -8,16 +8,14 @@ class EventCard extends React.Component {
     }
 
     render() {
-        return <div className='event' id={ this.props._id }>
-         <Link to={`/events/${this.props._id}`}>
-         <div className='container'>
-            <h3>{ this.props.name }</h3>
-            <h6>{ Moment(this.props.date).format('MMMM Do, YYYY') } at { Moment(this.props.date).format('LT') }</h6>
-            <h4>@ { this.props.loc }</h4>
-            <p>{ this.props.desc }</p>
-         </div>
+        return <Link to={`/events/${this.props._id}`}>
+            <div className='event' id={ this.props._id }>
+                <h3>{ this.props.name }</h3>
+                <h6>{ Moment(this.props.date).format('MMMM Do, YYYY') } at { Moment(this.props.date).format('LT') }</h6>
+                <h4>@ { this.props.loc }</h4>
+                <p>{ this.props.desc }</p>
+            </div>
         </Link>
-        </div>
     }
 }
 

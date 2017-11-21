@@ -46,11 +46,6 @@ class EventPage extends React.Component {
                 errorAlert: true
             });
         });
-        //pass the event ID
-        //fetch delete method
-        //catch - show an error notification
-        //if successfull, delete off database
-        //send the user to the dashboard
     }
     closeModal(e){
         e.preventDefault();

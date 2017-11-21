@@ -4,7 +4,7 @@ import Moment from 'moment';
 import EventCard from './eventCard';
 import Navigation from '../navigation';
 
-class App extends React.Component {
+class Dashboard extends React.Component {
   constructor() {
     super();
     this.fetchEvents = this.fetchEvents.bind(this);
@@ -34,4 +34,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Dashboard;
