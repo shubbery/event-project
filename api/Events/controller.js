@@ -19,7 +19,6 @@ events.getEvents = (req, res) => {
 
 events.getEventById = (req, res) => {
     const eventId = req.params.id;
-    console.log(eventId);
     Event.findOne({ 
         _id: eventId 
     }).then((doc) => {

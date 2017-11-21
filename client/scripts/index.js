@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './components/app';
+import App from './components/events/app';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import EventPage from './components/eventPage';
+import EventPage from './components/events/eventPage';
 
 class AppLayout extends React.Component {
     constructor() {

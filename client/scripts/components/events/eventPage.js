@@ -3,15 +3,18 @@ import Moment from 'moment';
 
 import DeleteModal from '../deleteModal';
 import Navigation from '../navigation';
+import ErrorAlert from '../errorAlert';
 
 class EventPage extends React.Component {
     constructor() {
         super();
         this.editEvent = this.editEvent.bind(this);
-        this.deleteEvent = this.deleteEvent.bind(this);
+        this.getDeleteModal = this.getDeleteModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.deleteEvent = this.deleteEvent.bind(this);
         this.state = {
-            deleteModal: false
+            deleteModal: false,
+            errorAlert: false
         }
     }
     editEvent(e){
@@ -19,13 +22,35 @@ class EventPage extends React.Component {
         console.log('editttttttttt');
         console.log(this.props.match.params.eventId);
     }
-    deleteEvent(e){
+    getDeleteModal(e){
         e.preventDefault();
-        console.log('deleteeeeeeeee');
-        console.log(this.props.match.params.eventId);
+        console.log('RELEASE THE KRAKEN');
         this.setState({
             deleteModal: true
         });
+    }
+    deleteEvent(e){
+        e.preventDefault();
+        console.log('BYE FELICIA 👋');
+        const event_ID = this.props.match.params.eventId;
+        console.log(event_ID);
+
+        fetch(`/api/events/${event_ID}`, {
+            method: "DELETE"
+        }).then(res => {
+            console.log('deleeeeete');
+            // console.log(res);
+            document.location.replace('/dashboard');
+        }).catch(err => {
+            this.setState({
+                errorAlert: true
+            });
+        });
+        //pass the event ID
+        //fetch delete method
+        //catch - show an error notification
+        //if successfull, delete off database
+        //send the user to the dashboard
     }
     closeModal(e){
         e.preventDefault();
@@ -52,16 +77,17 @@ class EventPage extends React.Component {
                 </a>
               </li>
               <li>
-                <a href="" onClick={this.deleteEvent}>
+                <a href="" onClick={this.getDeleteModal}>
                   💀💀💀
                 </a>
-                {this.state.deleteModal ? (<DeleteModal closeModal={this.closeModal} deleteEvent={this.deleteEvent}/>) : null}
+                {this.state.deleteModal ? (<DeleteModal closeModal={this.closeModal} getDeleteModal={this.getDeleteModal} deleteEvent={this.deleteEvent}/>) : null}
               </li>
             </ul>
             <h1>{ this.state.name }</h1>
             <h6>{ Moment(this.state.date).format('MMMM Do, YYYY') } at { Moment(this.state.date).format('LT') }</h6>
             <h4>@ { this.state.loc }</h4>
             <p>{ this.state.desc }</p>
+            { this.state.errorAlert ? (<ErrorAlert />) : null }
             <Navigation />
           </div>;
     }
