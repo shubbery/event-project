@@ -3,24 +3,48 @@ import Moment from 'moment';
 
 import DeleteModal from '../deleteModal';
 import Navigation from '../navigation';
+import EditEvent from './editEvent';
 import ErrorAlert from '../errorAlert';
 
 class EventPage extends React.Component {
     constructor() {
         super();
         this.editEvent = this.editEvent.bind(this);
+        this.saveEdit = this.saveEdit.bind(this);
+        this.deleteEvent = this.deleteEvent.bind(this);
         this.getDeleteModal = this.getDeleteModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.deleteEvent = this.deleteEvent.bind(this);
         this.state = {
             deleteModal: false,
+            editMode: false,
             errorAlert: false
         }
     }
+
     editEvent(e){
         e.preventDefault();
-        console.log('editttttttttt');
-        console.log(this.props.match.params.eventId);
+        this.setState({
+            editMode: true
+        })
+    }
+    saveEdit(){
+        console.log('editttttttttt', this.props.match.params.eventId);
+        const editEvent = Object.assign({}, this.state);
+        fetch(`/api/events/${this.props.match.params.eventId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editEvent),
+        })
+        .then(() => {
+            
+        });
+
+        this.setState({
+            editMode: false
+        });
     }
     getDeleteModal(e){
         e.preventDefault();
@@ -78,10 +102,11 @@ class EventPage extends React.Component {
                 {this.state.deleteModal ? (<DeleteModal closeModal={this.closeModal} getDeleteModal={this.getDeleteModal} deleteEvent={this.deleteEvent}/>) : null}
               </li>
             </ul>
-            <h1>{ this.state.name }</h1>
+            { this.state.editMode ? <EditEvent/> : <div><h1>{ this.state.name }</h1>
             <h6>{ Moment(this.state.date).format('MMMM Do, YYYY') } at { Moment(this.state.date).format('LT') }</h6>
             <h4>@ { this.state.loc }</h4>
             <p>{ this.state.desc }</p>
+            </div>}
             { this.state.errorAlert ? (<ErrorAlert />) : null }
             <Navigation />
           </div>;
