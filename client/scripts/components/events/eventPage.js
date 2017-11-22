@@ -40,7 +40,6 @@ class EventPage extends React.Component {
         })
     }
     saveEdit(){
-        console.log('editttttttttt dis one:', this.props.match.params.eventId);
         const editEvent = Object.assign({}, this.state);
         fetch(`/api/events/${this.props.match.params.eventId}`, {
             method: "PUT",

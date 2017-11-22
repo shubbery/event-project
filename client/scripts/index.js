@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import Dashboard from './components/events/dashboard';
 import EventPage from './components/events/eventPage';
@@ -18,7 +18,9 @@ class AppLayout extends React.Component {
             <Router>
                 <div className="app">
                     <header className="intro">
+                    <Link to='/dashboard'>
                         <h1>{this.state.appName}</h1>
+                    </Link>
                     </header>
                 <Route
                     exact
