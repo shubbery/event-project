@@ -1,10 +1,15 @@
 const mongoose = require('mongoose');
 
 const CardSchema = mongoose.Schema({
-    board_id: String,
     input: String,
-    members: Object, //empty obj of user ids
-    //_someId: Schema.Types.ObjectId,
+    board_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Board'
+    },
+    members: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }], //empty obj of user ids
 });
 
 module.exports = mongoose.model('Card', CardSchema);

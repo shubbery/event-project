@@ -19,8 +19,6 @@ const EventSchema = mongoose.Schema({
         maxlength: 288
     },
     //# of attendees - to add once user schema is up (after auth lesson)
-    // boards: Object, //empty obj of board ids - (after multiple routes and models lesson)
-    //_someId: Schema.Types.ObjectId,
 });
 
 module.exports = mongoose.model('Event', EventSchema);
