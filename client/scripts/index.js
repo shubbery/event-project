@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import Dashboard from './components/events/dashboard';
 import EventPage from './components/events/eventPage';
+import UserProfile from './components/users/userProfile';
 
 class AppLayout extends React.Component {
     constructor() {
@@ -28,6 +29,8 @@ class AppLayout extends React.Component {
                     render={() => <Dashboard /> } 
                 />
                 <Route path="/events/:eventId" component={EventPage} />
+                <Route path="/user" component={UserProfile} /> 
+                {/* path will actually be /user/:userId */}
                 </div>
             </Router>
         )
