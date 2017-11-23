@@ -26,7 +26,7 @@ class AppLayout extends React.Component {
                 <Route
                     exact
                     path="/dashboard"
-                    render={() => <Dashboard /> } 
+                    render={(props) => <Dashboard {...props} /> } 
                 />
                 <Route path="/events/:eventId" component={EventPage} />
                 <Route path="/user" component={UserProfile} /> 

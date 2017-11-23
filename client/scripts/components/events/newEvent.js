@@ -49,11 +49,16 @@ class NewEvent extends React.Component{
         })
         .then((res) => {
             if(res.ok){
-                this.props.fetchEvents();
+                // this.props.fetchEvents();
+                return res.json();                              
                 this.props.close();
             } else {
                 res.json().then(errors => this.setState({ errors: errors.errors }));
             }
+        })
+        .then((res) => {
+            console.log(res);
+            this.props.redirectOnSave(res._id);
         });
     }
     renderError(error_obj, field_name){

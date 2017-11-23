@@ -38,6 +38,7 @@ class Navigation extends React.Component {
             fetchEvents={this.props.fetchEvents}
             close={this.closeNewEvent}
             prep={this.prepareClose}
+            redirectOnSave={this.props.redirectOnSave}
           />
         ) : null}
       </nav>

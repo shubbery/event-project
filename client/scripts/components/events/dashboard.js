@@ -8,6 +8,7 @@ class Dashboard extends React.Component {
   constructor() {
     super();
     this.fetchEvents = this.fetchEvents.bind(this);
+    this.redirectOnSave = this.redirectOnSave.bind(this);
     this.state = {
       events: [],
     };
@@ -20,6 +21,9 @@ class Dashboard extends React.Component {
   componentDidMount(){
     this.fetchEvents();
   }
+  redirectOnSave(id){
+    this.props.history.push(`/events/${id}`); 
+  }
   render() {
     return ( 
       <div>
@@ -28,7 +32,7 @@ class Dashboard extends React.Component {
                 <EventCard key={event._id} {...event} />
               ))}
           </div>
-          <Navigation fetchEvents={this.fetchEvents}/>
+          <Navigation fetchEvents={this.fetchEvents} redirectOnSave={this.redirectOnSave} />
       </div>
     )
   }
