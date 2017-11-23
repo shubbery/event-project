@@ -1,5 +1,7 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import NewEvent from './events/newEvent';
+
 
 class Navigation extends React.Component {
   constructor() {
@@ -29,7 +31,7 @@ class Navigation extends React.Component {
   render() {
     return (
       <nav className="main-nav">
-        <a href="">User Page</a>
+        <Link to='/user'>User Profile</Link>
         <button onClick={this.addNewEvent}>NEW EVENT</button>
         {this.state.createMode ? (
           <NewEvent
