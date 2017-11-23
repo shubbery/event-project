@@ -1,6 +1,7 @@
 import React from 'react';
 import Moment from 'moment';
 import InputMoment from 'input-moment';
+import { spawn } from 'child_process';
 
 class NewEvent extends React.Component{
     constructor(){
@@ -13,7 +14,8 @@ class NewEvent extends React.Component{
             date: Moment(),
             desc: '',
             name: '',
-            loc: ''
+            loc: '',
+            errors: null
         };
     }
     handleInputChange(key, value) {
@@ -35,36 +37,51 @@ class NewEvent extends React.Component{
         
         const event_req = this.state;
         delete event_req["picker"];
-        console.log(event_req);
 
         const newEvent = Object.assign({}, event_req);
-        console.log(newEvent);
         fetch("/api/events", {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
             method: "POST",
             body: JSON.stringify(newEvent),
-            headers: {
-                "Content-Type": "application/json"
-            }
         })
-        .then(() => {
-            this.props.fetchEvents();
-            this.props.close();
+        .then((res) => {
+            if(res.ok){
+                this.props.fetchEvents();
+                this.props.close();
+            } else {
+                res.json().then(errors => this.setState({ errors: errors.errors }));
+            }
         });
     }
+    renderError(error_obj, field_name){
+        if( error_obj.kind === 'required' ){
+            return <span>We need to know the {field_name}!</span>;
+        } else if( error_obj.kind === 'minlength' ) {
+            return <span>{field_name} isn't long enough.</span>;
+        } else {
+            return <span>Did you forget {field_name}?</span>;
+        }
+    }
     render(){
-        return <form className='modal'>
-            <button onClick={ this.props.prep }>x</button>
-            <input type="text" placeholder="Event Title" name="title" id="title" onChange={(e) => this.handleInputChange('name', e.target.value)}/>
-            <input type="text" value={ this.state.date.format('MMMM Do, YYYY') + ' @ ' + this.state.date.format('LT') } onFocus={ this.togglePicker } readOnly />
-            { this.state.picker === true ? <InputMoment
-                moment={ this.state.date }
-                onChange={ this.handleDateChange } 
-                onSave={ this.togglePicker }
-            /> : null }
-            <input type="text" name="loc" id="loc" placeholder="Location" onChange={(e) => this.handleInputChange('loc', e.target.value)}/>
-            <textarea name="desc" id="desc" cols="30" rows="10" placeholder="Description Here" onChange={(e) => this.handleInputChange('desc', e.target.value)}></textarea>
-            <button onClick={(e) => this.handleSave(e)}>Save</button>
-        </form>
+        return <form className="modal">
+            <button onClick={this.props.prep}>x</button>
+            <label htmlFor="name">
+              {this.state.errors ? this.renderError(this.state.errors.name, "Event Name") : null}
+              <input type="text" placeholder="Event Title" name="name" id="name" onChange={e => this.handleInputChange("name", e.target.value)} />
+            </label>
+            <input type="text" value={this.state.date.format("MMMM Do, YYYY") + " @ " + this.state.date.format("LT")} onFocus={this.togglePicker} readOnly />
+            {this.state.picker === true ? <InputMoment moment={this.state.date} onChange={this.handleDateChange} onSave={this.togglePicker} /> : null}
+            <label htmlFor="loc">
+              {this.state.errors ? this.renderError(this.state.errors.loc, "Location") : null}
+              <input type="text" name="loc" id="loc" placeholder="Location" onChange={e => this.handleInputChange("loc", e.target.value)} />
+            </label>
+            {this.state.errors ? this.renderError(this.state.errors.desc, "Event Description") : null}
+            <textarea name="desc" id="desc" cols="30" rows="10" placeholder="Description Here" onChange={e => this.handleInputChange("desc", e.target.value)} />
+            <button onClick={e => this.handleSave(e)}>Save</button>
+          </form>;
     }
 }
 
