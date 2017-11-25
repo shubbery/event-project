@@ -6,17 +6,22 @@ import Board from './board';
 class Boards extends React.Component{
     constructor(){
         super();
-        this.fetchBoards = this.fetchBoards.bind(this);
         this.state = {
-            event_id: '',
+            
         }
     }
-    fetchBoards(){
-        const endpoint = `/api/boards?event_id=${this.state.event_id}`;
-        this.state.event_id != "" ? console.log(endpoint) : null; 
-    }
     componentDidMount(){
-        console.log('did mount', this.props);
+        fetch(`/api/boards?event_id=${this.props.event_id}`, {
+            method: 'GET',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+        })
+        .then(res => res.json())
+        .then(boards => {
+            this.setState(boards);
+        });
     }
     render(){
         return <div className="event-boards">
