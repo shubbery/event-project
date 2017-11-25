@@ -1,0 +1,20 @@
+.event-card {
+    &__title {
+        color: $font-grey;
+    }
+    &__container {
+        padding: 10px;
+    }
+    &__card {
+        background-color: $light-grey;
+        width: 250px;
+        height: 250px;
+        padding: 30px;
+        border-radius: 5px;
+        color:$font-grey;
+        * {
+            margin: 0;
+        }
+        box-shadow: 6px 6px 0px $sprout-shadow;
+    }
+}

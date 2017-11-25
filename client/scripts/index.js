@@ -10,7 +10,7 @@ class AppLayout extends React.Component {
     constructor() {
         super();
         this.state = {
-            appName: "Bean Sprout",
+            appName: "Sprout",
         }
     }
 
@@ -20,8 +20,9 @@ class AppLayout extends React.Component {
                 <div className="app">
                     <header className="intro">
                     <Link to='/dashboard'>
-                        <h1>{this.state.appName}</h1>
+                        <h1 className="site-title" id="site-title">{this.state.appName}</h1>
                     </Link>
+                    <h2 className="site-title__subtitle">Your personal event planter</h2>
                     </header>
                 <Route
                     exact

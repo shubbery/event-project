@@ -1,0 +1,11 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 50px 0 100px;
+}
+.eventList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 50px 0;
+}

@@ -1,0 +1,24 @@
+body {
+    font-family: $font-stack;
+    background-color: $sprout-green;
+    color: $font-grey;
+}
+
+a {
+    text-decoration: none;
+    color: $font-grey;
+}
+
+.site-title {
+    color: #FFF;
+    font-size: 60px;
+    @include flat-shadow($sprout-shadow);
+    display: inline;
+    &__subtitle {
+        color: #FFF;
+        font-size: 15px;
+        display: inline;
+        margin-left: 40px;
+        text-transform: lowercase;
+    }
+}
