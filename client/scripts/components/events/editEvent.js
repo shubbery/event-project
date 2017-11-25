@@ -24,7 +24,10 @@ class EditEvent extends React.Component{
             /> : null }
             <input type="text" name="loc" id="loc" value={ this.props.e.loc } onChange={(e) => this.props.handleInputChange('loc', e.target.value)}/>
             <textarea name="desc" id="desc" cols="30" rows="10" value={ this.props.e.desc } onChange={(e) => this.props.handleInputChange('desc', e.target.value)}></textarea>
-            {<button onClick={(e) => this.props.saveEdit(e)}>Save</button>}
+            {<button onClick={(e) => {
+                e.preventDefault();
+                this.props.saveEdit(e);
+            }}>Save</button>}
         </form>
     }
 }

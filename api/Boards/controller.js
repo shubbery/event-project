@@ -21,6 +21,15 @@ boards.getBoardById = (req, res) => {
     });
 }
 
+boards.getBoardByEventId = (req, res) => {
+    const eventID = req.params.event_id;
+    Board.find({
+        event_id: eventID
+    }).then(doc => {
+        res.status(200).send(doc);
+    });
+}
+
 //POST METHOD
 boards.postBoard = (req, res) => {
     const boardModel = new Board();

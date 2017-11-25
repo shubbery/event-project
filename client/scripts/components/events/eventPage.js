@@ -5,6 +5,7 @@ import DeleteModal from '../deleteModal';
 import Navigation from '../navigation';
 import EditEvent from './editEvent';
 import ErrorAlert from '../errorAlert';
+import Boards from '../boards/boards';
 
 class EventPage extends React.Component {
     constructor() {
@@ -98,7 +99,7 @@ class EventPage extends React.Component {
         });
     }
     render() {
-        return <div className="event-page" id={ this.state._id }>
+        return <div className="event-page" id={this.state._id}>
             <ul className="admin-navigation">
               <li>
                 <a href="" onClick={this.editEvent}>
@@ -109,15 +110,19 @@ class EventPage extends React.Component {
                 <a href="" onClick={this.getDeleteModal}>
                   💀💀💀
                 </a>
-                {this.state.deleteModal ? (<DeleteModal closeModal={this.closeModal} getDeleteModal={this.getDeleteModal} deleteEvent={this.deleteEvent}/>) : null}
+                {this.state.deleteModal ? <DeleteModal closeModal={this.closeModal} getDeleteModal={this.getDeleteModal} deleteEvent={this.deleteEvent} /> : null}
               </li>
             </ul>
-            { this.state.editMode ? <EditEvent e={this.state} saveEdit={this.saveEdit} handleInputChange={this.handleInputChange} handleDateChange={this.handleDateChange} /> : <div><h1>{ this.state.name }</h1>
-            <h6>{ Moment(this.state.date).format('MMMM Do, YYYY') } at { Moment(this.state.date).format('LT') }</h6>
-            <h4>@{ this.state.loc }</h4>
-            <p>{ this.state.desc }</p>
-            </div>}
-            { this.state.errorAlert ? (<ErrorAlert />) : null }
+            {this.state.editMode ? <EditEvent e={this.state} saveEdit={this.saveEdit} handleInputChange={this.handleInputChange} handleDateChange={this.handleDateChange} /> : <div className="event-info">
+                <h1>{this.state.name}</h1>
+                <h6>
+                  {Moment(this.state.date).format("MMMM Do, YYYY")} at {Moment(this.state.date).format("LT")}
+                </h6>
+                <h4>@{this.state.loc}</h4>
+                <p>{this.state.desc}</p>
+              </div>}
+            <Boards event_id={this.state._id} random={'strrrriiinngg'}/>
+            {this.state.errorAlert ? <ErrorAlert /> : null}
             <Navigation />
           </div>;
     }
