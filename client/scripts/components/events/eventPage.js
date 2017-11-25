@@ -121,7 +121,7 @@ class EventPage extends React.Component {
                 <h4>@{this.state.loc}</h4>
                 <p>{this.state.desc}</p>
               </div>}
-            <Boards event_id={this.state._id} random={'strrrriiinngg'}/>
+            <Boards event_id={this.props.match.params.eventId} />
             {this.state.errorAlert ? <ErrorAlert /> : null}
             <Navigation />
           </div>;

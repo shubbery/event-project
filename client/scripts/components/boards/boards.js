@@ -7,24 +7,28 @@ import NewBoard from './newBoard';
 class Boards extends React.Component{
     constructor(){
         super();
-        this.fetchBoards = this.fetchBoards.bind(this);
         this.addBoard = this.addBoard.bind(this);
         this.state = {
             addMode: false,
-            event_id: '',
             boards: [],
         }
-    }
-    fetchBoards(){
-        const endpoint = `/api/boards?event_id=${this.state.event_id}`;
-        this.state.event_id != "" ? console.log(endpoint) : null; 
     }
     addBoard(e){
         e.preventDefault();
         this.setState({ addMode: true });
     }
     componentDidMount(){
-        console.log('did mount', this.props);
+        fetch(`/api/boards?event_id=${this.props.event_id}`, {
+            method: 'GET',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+        })
+        .then(res => res.json())
+        .then(boards => {
+            this.setState(boards);
+        });
     }
     render(){
         return <div className="event-boards">
