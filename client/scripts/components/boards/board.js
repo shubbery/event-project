@@ -6,8 +6,8 @@ class Board extends React.Component{
     }
     render(){
         return <div className="board-container">
-            <h1>BOARD</h1>
-          </div>;
+            <p>This is a Board Name</p>
+        </div>;
     }
 }
 
