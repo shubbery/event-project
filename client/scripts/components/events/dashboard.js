@@ -28,9 +28,7 @@ class Dashboard extends React.Component {
     return ( 
       <div>
           <div className="eventList">
-              {this.state.events.map(event => (
-                <EventCard key={event._id} {...event} />
-              ))}
+              { this.state.events.length > 0 ? this.state.events.map(event => ( <EventCard key={event._id} {...event} />)) : 'Nothing to see here! 🙅🏽 Create an event below!' }
           </div>
           <Navigation fetchEvents={this.fetchEvents} redirectOnSave={this.redirectOnSave} />
       </div>
