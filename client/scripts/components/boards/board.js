@@ -5,8 +5,11 @@ class Board extends React.Component{
         super();
     }
     render(){
-        return <div className="board-container">
-            <p>This is a Board Name</p>
+        return <div className="board-container" id={this.props._id}>
+            <h2>{this.props.name}</h2>
+            {/* Need a pencil icon to trigger edit */}
+            {/* Need something to kill/delete this board */}
+            <button>Add Card</button>
         </div>;
     }
 }

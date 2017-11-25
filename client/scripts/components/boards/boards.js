@@ -8,6 +8,7 @@ class Boards extends React.Component{
     constructor(){
         super();
         this.addBoard = this.addBoard.bind(this);
+        this.fetchBoards = this.fetchBoards.bind(this);
         this.state = {
             addMode: false,
             boards: [],
@@ -17,24 +18,29 @@ class Boards extends React.Component{
         e.preventDefault();
         this.setState({ addMode: true });
     }
-    componentDidMount(){
+    fetchBoards(){
+        //WE NEED TO SETUP ADVANCED QUERYING TO GET ONLY
+        //BOARDS FOR THE SPECIFIC EVENT
         fetch(`/api/boards?event_id=${this.props.event_id}`, {
-            method: 'GET',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          }
         })
-        .then(res => res.json())
-        .then(boards => {
-            this.setState(boards);
+          .then(res => res.json())
+          .then(boards => {
+            this.setState({ boards });
         });
+    }
+    componentDidMount(){
+        this.fetchBoards();
     }
     render(){
         return <div className="event-boards">
-            <Board />
+            {this.state.boards.map(board => (<Board key={board._id} {...board}/>) )}
             <button onClick={this.addBoard} className="add-board-btn">New Board</button>
-            { this.state.addMode ? <NewBoard fetchBoards={this.fetchBoards}/> : null }
+            { this.state.addMode ? <NewBoard fetchBoards={this.fetchBoards} event_id={this.props.event_id}/> : null }
         </div>;
     }
 }

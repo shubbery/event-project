@@ -6,8 +6,8 @@ const bodyParser = require('body-parser');
 
 const events = require("./api/Events/controller");
 //require the controller because it imports the schema with it
-// const Board = require('./api/Boards/model.js');
-// const Card = require('./api/Cards/model.js');
+const boards = require('./api/Boards/controller');
+const cards = require('./api/Cards/controller');
 
 //THE DATABASE
 app.use(bodyParser.json());
@@ -33,6 +33,28 @@ app.post('/api/events', events.postEvent);
 app.put('/api/events/:id', events.editEvent);
 //DELETE yer events (especially the garbage ones)
 app.delete('/api/events/:id', events.deleteEvent);
+
+//GET YER BOARDS
+app.get('/api/boards', boards.getBoards);
+app.get('/api/boards/:id', boards.getBoardById);
+app.get('/api/boards/:event_id', boards.getBoardByEventId);
+//POST
+app.post('/api/boards', boards.postBoard);
+//PUT
+app.put('/api/boards/:id', boards.editBoard);
+//DELETE
+app.delete('/api/boards/:id', boards.deleteBoard);
+
+//CAAARDS
+app.get("/api/cards", cards.getCards);
+app.get("/api/cards/:id", cards.getCardById);
+// app.get("/api/cards/:event_id", cards.getCardByBoardId);
+// //POST
+app.post("/api/cards", cards.postCard);
+// //PUT
+app.put("/api/cards/:id", cards.editCard);
+// //DELETE
+app.delete("/api/cards/:id", cards.deleteCard);
 
 // This route serves your index.html file (which
 // initializes React)

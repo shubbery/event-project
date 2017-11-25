@@ -22,6 +22,8 @@ cards.getCardById = (req, res) => {
     });
 }
 
+//MAKE A cards.getCardByBoardId
+
 //POST METHOD - add new cards to a board
 cards.postCard = (req, res) => {
     const cardModel = new Card();

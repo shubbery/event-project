@@ -4,7 +4,8 @@ class NewBoard extends React.Component{
     constructor(){
         super();
         this.state = {
-            name: "",
+            name: '',
+            event_id: '',
             errors: null
         };
     }
@@ -25,7 +26,7 @@ class NewBoard extends React.Component{
         })
         .then(res => {
             if (res.ok) {
-                this.props.fetchBords();
+                this.props.fetchBoards();
                 return res.json();
             } else {
                 res.json().then(errors => {
@@ -37,6 +38,9 @@ class NewBoard extends React.Component{
             console.log(res);
             // this.props.redirectOnSave(res._id);
         });
+    }
+    componentDidMount(){
+        this.setState({ event_id: this.props.event_id });
     }
     render(){
         return <div className="board-container">
