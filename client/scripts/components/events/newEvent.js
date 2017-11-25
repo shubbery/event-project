@@ -71,7 +71,7 @@ class NewEvent extends React.Component{
         }
     }
     render(){
-        return <form className="modal">
+        return <form className="modal modal__new-event">
             <button onClick={this.props.prep}>x</button>
             <label htmlFor="name">
               {this.state.errors ? this.renderError(this.state.errors.name, "Event Name") : null}

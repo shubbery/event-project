@@ -31,8 +31,8 @@ class Navigation extends React.Component {
   render() {
     return (
       <nav className="main-nav">
-        <Link to='/user'>User Profile</Link>
-        <button onClick={this.addNewEvent}>NEW EVENT</button>
+        <Link to='/user' className="button-profile">User Profile</Link>
+        <button onClick={this.addNewEvent} className="button-new-event">NEW EVENT</button>
         {this.state.createMode ? (
           <NewEvent
             fetchEvents={this.props.fetchEvents}
