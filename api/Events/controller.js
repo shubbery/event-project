@@ -26,7 +26,6 @@ events.getEventById = (req, res) => {
     });
 }
 
-
 //POST METHOD - adding new events
 events.postEvent = (req, res) => {
     //create a new instance of event using the documented schema
@@ -76,6 +75,33 @@ events.editEvent = (req, res) => {
             delete req.body._id;
             const updatedEvent = Object.assign(doc, model);
             updatedEvent.save((err, doc) => {
+                if(err){
+                    res.status(500).send(err);
+                } else {
+                    res.status(200).send(doc);
+                }
+            });
+        }
+    });
+}
+
+events.postBoard = (req, res) => {
+    //save the request body as the model
+    const model = req.body;
+    console.log(req.body);
+    console.log(req.params);
+    // const newBoard = { 'name': 'Board' };
+    //find the event by ID and edit it
+    const board = Event.findById(req.params.event_id, (err, doc) => {
+        if(err) {
+            res.status(500).send(err);
+        } else {
+            console.log(doc.boards);
+            const boards = doc.boards;
+            boards.push(model);
+            console.log(doc);
+
+            doc.save((err,doc) => {
                 if(err){
                     res.status(500).send(err);
                 } else {

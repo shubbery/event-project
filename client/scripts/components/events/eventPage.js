@@ -6,6 +6,7 @@ import Navigation from '../navigation';
 import EditEvent from './editEvent';
 import ErrorAlert from '../errorAlert';
 // import Boards from '../boards/boards';
+import Board from '../boards/board';
 import NewBoard from '../boards/newBoard';
 
 class EventPage extends React.Component {
@@ -57,9 +58,7 @@ class EventPage extends React.Component {
             },
             body: JSON.stringify(editEvent),
         })
-        .then(() => {
-            
-        });
+        .then(() => { });
 
         this.setState({
             editMode: false
@@ -145,7 +144,7 @@ class EventPage extends React.Component {
                     e.preventDefault();
                     this.setState({ createBoardMode:true });
                 }}>Add a Board</button>
-                { this.state.createBoardMode ? <NewBoard createMode={this.closeBoardCreate}/> : null }
+                { this.state.createBoardMode ? <NewBoard event_id={this.props.match.params.eventId} createMode={this.closeBoardCreate}/> : null }
             </div>
             {this.state.errorAlert ? <ErrorAlert /> : null}
             <Navigation />
