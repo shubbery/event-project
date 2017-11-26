@@ -9,6 +9,7 @@ class Dashboard extends React.Component {
     super();
     this.fetchEvents = this.fetchEvents.bind(this);
     this.redirectOnSave = this.redirectOnSave.bind(this);
+    
     this.state = {
       events: [],
     };
