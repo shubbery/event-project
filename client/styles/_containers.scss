@@ -24,4 +24,11 @@
     position: fixed;
     top: 50%; left: 50%;
     transform: translateX(-50%) translateY(-50%);
+    background: $sprout-green;
+    border: solid 1px #FFF;
+    @include box-shadow;
+    border-radius: 5px;
+    padding: 50px;
+    text-align: center;
+    & > p { margin: 0; }
 }

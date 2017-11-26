@@ -2,3 +2,7 @@
   text-overflow: clip;
   text-shadow: 3px 3px 0 $shadow-clr , 4px 4px 0 $shadow-clr , 5px 5px 0 $shadow-clr , 6px 6px 0 $shadow-clr , 7px 7px 0 $shadow-clr , 8px 8px 0 $shadow-clr , 9px 9px 0 $shadow-clr , 10px 10px 0 $shadow-clr , 11px 11px 0 $shadow-clr , 12px 12px 0 $shadow-clr , 13px 13px 0 $shadow-clr , 14px 14px 0 $shadow-clr , 15px 15px 0 $shadow-clr , 16px 16px 0 $shadow-clr , 17px 17px 0 $shadow-clr , 18px 18px 0 $shadow-clr , 19px 19px 0 $shadow-clr , 20px 20px 0 $shadow-clr ;
 }
+
+@mixin box-shadow( $shadow-clr: $sprout-shadow ){
+  box-shadow: 6px 6px 0px $shadow-clr;
+}

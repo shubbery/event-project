@@ -9,7 +9,7 @@ class Board extends React.Component{
     }
     render(){
         return <div className="board-container" id={this.props._id}>
-            <a onClick={e => {
+            <a href="#" onClick={e => {
                 e.preventDefault();
                 this.setState({editMode: true});
             }}>✏️</a>

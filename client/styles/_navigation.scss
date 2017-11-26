@@ -1,0 +1,11 @@
+.admin-navigation {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    &__item {
+        padding: 0 10px;
+    }
+    &__button {
+        font-size: 40px;
+    }
+}
