@@ -71,7 +71,9 @@ class NewEvent extends React.Component{
         }
     }
     render(){
-        return <form className="modal modal__new-event">
+        return <div className="modal_container">
+            <div className="modal_bg"></div>
+        <form className="modal modal__new-event">
             <button onClick={this.props.prep}>x</button>
             <label htmlFor="name">
               {this.state.errors ? this.renderError(this.state.errors.name, "Event Name") : null}
@@ -86,7 +88,8 @@ class NewEvent extends React.Component{
             {this.state.errors ? this.renderError(this.state.errors.desc, "Event Description") : null}
             <textarea name="desc" id="desc" cols="30" rows="10" placeholder="Description Here" onChange={e => this.handleInputChange("desc", e.target.value)} />
             <button onClick={e => this.handleSave(e)}>Save</button>
-          </form>;
+          </form>
+          </div>
     }
 }
 
