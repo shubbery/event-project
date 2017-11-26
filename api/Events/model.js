@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-// require("../Boards/model");
+const BoardSchema = require('../Boards/model');
 
-const EventSchema = mongoose.Schema({
+const EventSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -18,7 +18,7 @@ const EventSchema = mongoose.Schema({
         type: String,
         minlength: 1
     },
-    // boards: [BoardSchema]
+    boards: [BoardSchema]
     //# of attendees - to add once user schema is up (after auth lesson)
 });
 

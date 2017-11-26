@@ -5,7 +5,8 @@ import DeleteModal from '../deleteModal';
 import Navigation from '../navigation';
 import EditEvent from './editEvent';
 import ErrorAlert from '../errorAlert';
-import Boards from '../boards/boards';
+// import Boards from '../boards/boards';
+import NewBoard from '../boards/newBoard';
 
 class EventPage extends React.Component {
     constructor() {
@@ -18,10 +19,17 @@ class EventPage extends React.Component {
         this.deleteEvent = this.deleteEvent.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
+        this.closeBoardCreate = this.closeBoardCreate.bind(this);
         this.state = {
             deleteModal: false,
             editMode: false,
-            errorAlert: false
+            errorAlert: false,
+            createBoardMode: false,
+            name: '',
+            date: '',
+            loc: '',
+            desc: '',
+            boards: [],
         }
     }
     handleInputChange(key, value) {
@@ -89,6 +97,9 @@ class EventPage extends React.Component {
             deleteModal: false
         });
     }
+    closeBoardCreate(){
+        this.setState({ createBoardMode: false });
+    }
     componentDidMount() {
         fetch(`/api/events/${this.props.match.params.eventId}`, {
             method: 'GET',
@@ -127,7 +138,15 @@ class EventPage extends React.Component {
                 <h4>@{this.state.loc}</h4>
                 <p>{this.state.desc}</p>
               </div>}
-            <Boards event_id={this.props.match.params.eventId} />
+            <div className="event-boards">
+                { this.state.boards.length > 0 ? this.state.boards.map( board => <Board key={board._id} {...board}/> ) : null }
+                {/* New Board Button */}
+                <button onClick={e => {
+                    e.preventDefault();
+                    this.setState({ createBoardMode:true });
+                }}>Add a Board</button>
+                { this.state.createBoardMode ? <NewBoard createMode={this.closeBoardCreate}/> : null }
+            </div>
             {this.state.errorAlert ? <ErrorAlert /> : null}
             <Navigation />
           </div>;

@@ -1,11 +1,5 @@
 const mongoose = require('mongoose');
 
-const BoardSchema = mongoose.Schema({
-    name: String,
-    event_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Event"
-    },
+const BoardSchema = new mongoose.Schema({
+    name: String
 });
-
-module.exports = mongoose.model('Board', BoardSchema);

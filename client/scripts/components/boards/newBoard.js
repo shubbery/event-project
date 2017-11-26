@@ -40,7 +40,7 @@ class NewBoard extends React.Component{
         });
     }
     componentDidMount(){
-        this.setState({ event_id: this.props.event_id });
+        // this.setState({ event_id: this.props.event_id });
     }
     render(){
         return <form action="" onSubmit={e => this.createBoard(e)} className="board-container new-board-form">
@@ -48,6 +48,10 @@ class NewBoard extends React.Component{
                 { name: e.target.value }
                 )} />
             <button>Save</button>
+            <button onClick={e => {
+                e.preventDefault();
+                this.props.createMode();
+            }}>x</button>
         </form>;
     }
 }
