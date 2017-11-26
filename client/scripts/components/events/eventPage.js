@@ -101,19 +101,25 @@ class EventPage extends React.Component {
     render() {
         return <div className="event-page" id={this.state._id}>
             <ul className="admin-navigation">
-              <li>
-                <a href="" onClick={this.editEvent}>
+              <li className="admin-navigation__item">
+                <a href="" onClick={this.editEvent} className="admin-navigation__button">
                   ✏️
                 </a>
               </li>
-              <li>
-                <a href="" onClick={this.getDeleteModal}>
-                  💀💀💀
+              <li className="admin-navigation__item">
+                <a href="" onClick={this.getDeleteModal} className="admin-navigation__button">
+                  💀
                 </a>
                 {this.state.deleteModal ? <DeleteModal closeModal={this.closeModal} getDeleteModal={this.getDeleteModal} deleteEvent={this.deleteEvent} /> : null}
               </li>
             </ul>
-            {this.state.editMode ? <EditEvent e={this.state} saveEdit={this.saveEdit} handleInputChange={this.handleInputChange} handleDateChange={this.handleDateChange} /> : <div className="event-info">
+            {this.state.editMode ? <div>
+                <button onClick={e => {
+                    e.preventDefault();
+                    this.setState({editMode: false});
+                }}>x</button>
+                <EditEvent e={this.state} saveEdit={this.saveEdit} handleInputChange={this.handleInputChange} handleDateChange={this.handleDateChange} />
+              </div> : <div className="event-info">
                 <h1>{this.state.name}</h1>
                 <h6>
                   {Moment(this.state.date).format("MMMM Do, YYYY")} at {Moment(this.state.date).format("LT")}

@@ -5,7 +5,7 @@ class DeleteModal extends React.Component{
         super();
     }
     render(){
-        return <div className="delete-modal">
+        return <div className="modal delete-modal">
             <p>Are you sure you want to delete this event?</p>
             <a href="" className="cancel-delete" onClick={this.props.closeModal}>
               No. Let's keep it!
