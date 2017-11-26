@@ -44,7 +44,7 @@ class Boards extends React.Component{
             <button onClick={this.addBoard} className="add-board-btn">
               New Board
             </button>
-            {this.state.addMode ? <div>
+            {this.state.addMode ? <div className="new-board-container">
                 <button onClick={e => {
                     e.preventDefault();
                     this.setState({ addMode: false });

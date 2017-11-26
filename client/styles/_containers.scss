@@ -27,3 +27,14 @@
     text-align: center;
     & > p { margin: 0; }
 }
+
+.event-boards {
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: center;
+}
+
+.new-board-container {
+    display: block;
+    width: 100%;
+}
