@@ -3,9 +3,10 @@ import React from 'react';
 class NewBoard extends React.Component{
     constructor(){
         super();
+        this.createBoard = this.createBoard.bind(this);
         this.state = {
+            id: '',
             name: '',
-            event_id: '',
             errors: null
         };
     }
@@ -16,31 +17,18 @@ class NewBoard extends React.Component{
         delete req["errors"];
         console.log(req);
 
-        fetch("/api/boards", {
+        fetch(`/api/events/${this.props.event_id}/boards`, {
           headers: {
-            "Accept": "application/json",
+            Accept: "application/json",
             "Content-Type": "application/json"
           },
           method: "POST",
-          body: JSON.stringify(req),
-        })
-        .then(res => {
-            if (res.ok) {
-                this.props.fetchBoards();
-                return res.json();
-            } else {
-                res.json().then(errors => {
-                    this.setState({ errors: errors.errors })
-                });
-            }
-        })
-        .then(res => {
-            console.log(res);
-            // this.props.redirectOnSave(res._id);
-        });
+          body: JSON.stringify(req)
+        }).then(res => res.json).then(json => console.log(json));
     }
     componentDidMount(){
         // this.setState({ event_id: this.props.event_id });
+        // this.createBoard();
     }
     render(){
         return <form action="" onSubmit={e => this.createBoard(e)} className="board-container new-board-form">
