@@ -22,11 +22,14 @@ boards.getBoardById = (req, res) => {
 }
 
 boards.getBoardByEventId = (req, res) => {
-    const eventID = req.params.event_id;
-    Board.find({
-        event_id: eventID
-    }).then(doc => {
-        res.status(200).send(doc);
+    const eventId = req.params.event_id;
+    // console.log(eventId);
+    Board.find({ "event_id": eventId }, (err, docs) => {
+        if (err) {
+            res.status(400).send(err);
+        } else {
+            res.status(200).send(docs);
+        }
     });
 }
 

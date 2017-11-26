@@ -43,12 +43,12 @@ class NewBoard extends React.Component{
         this.setState({ event_id: this.props.event_id });
     }
     render(){
-        return <div className="board-container">
-            <form action="" onSubmit={e => this.createBoard(e)}>
-                <input type="text" placeholder="New Board Name" value={this.state.name} onChange={e => this.setState({name: e.target.value}) }/>
-                <button>Save</button>
-            </form>
-        </div>;
+        return <form action="" onSubmit={e => this.createBoard(e)} className="board-container">
+            <input type="text" placeholder="New Board Name" value={this.state.name} onChange={e => this.setState(
+                { name: e.target.value }
+                )} />
+            <button>Save</button>
+        </form>;
     }
 }
 
