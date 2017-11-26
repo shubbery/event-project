@@ -4,5 +4,5 @@
 }
 
 @mixin box-shadow( $shadow-clr: $sprout-shadow ){
-  box-shadow: 6px 6px 0px $shadow-clr;
+  box-shadow: 6px 6px 0px rgba($shadow-clr, 0.5);
 }
