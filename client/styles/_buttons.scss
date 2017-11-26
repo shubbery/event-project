@@ -4,7 +4,8 @@ button {
     background: $bg-grey;
     padding: 10px 20px;
     cursor: pointer;
-    box-shadow: 6px 6px 0px $sprout-shadow;
+    // box-shadow: 6px 6px 0px $sprout-shadow;
+    @include box-shadow;
 }
 
 .button-profile {
