@@ -15,7 +15,6 @@ class NewBoard extends React.Component{
 
         const req = this.state;
         delete req["errors"];
-        console.log(req);
 
         fetch(`/api/events/${this.props.event_id}/boards`, {
           headers: {
@@ -24,7 +23,7 @@ class NewBoard extends React.Component{
           },
           method: "POST",
           body: JSON.stringify(req)
-        }).then(res => res.json).then(json => console.log(json));
+        }).then(res => res.json()).then(json => console.log(json));
     }
     componentDidMount(){
         // this.setState({ event_id: this.props.event_id });

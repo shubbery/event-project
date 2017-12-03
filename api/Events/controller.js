@@ -96,10 +96,10 @@ events.postBoard = (req, res) => {
         if(err) {
             res.status(500).send(err);
         } else {
-            console.log(doc.boards);
+            console.log('doc.boards', doc.boards);
             const boards = doc.boards;
             boards.push(model);
-            console.log(doc);
+            console.log('doc', doc);
 
             doc.save((err,doc) => {
                 if(err){
