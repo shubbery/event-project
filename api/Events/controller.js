@@ -90,34 +90,5 @@ events.editEvent = (req, res) => {
     });
 }
 
-events.postBoard = (req, res) => {
-    //save the request body as the model
-    const newBoardSchema = new BoardSchema();
-    const model = req.body;
-    console.log('req.body', req.body);
-    console.log('req.params', req.params);    
-    //assigning the schema and submitting the request body
-    const newBoard = Object.assign(newBoardSchema, model);
-    //find the event by ID and edit it
-    const board = Event.findById(req.params.event_id, (err, doc) => {
-        if(err) {
-            res.status(500).send(err);
-        } else {
-            console.log('doc.boards', doc.boards);
-            const boards = doc.boards;
-            boards.push(model);
-            console.log('doc', doc);
-
-            doc.save((err,doc) => {
-                if(err){
-                    res.status(500).send(err);
-                } else {
-                    res.status(200).send(doc);
-                }
-            });
-        }
-    });
-}
-
 //export the events object of METHODS!
 module.exports = events;

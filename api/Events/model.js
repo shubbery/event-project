@@ -18,7 +18,10 @@ const EventSchema = new mongoose.Schema({
         type: String,
         minlength: 1
     },
-    boards: [BoardSchema]
+    boards: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Board'
+    }]
     //# of attendees - to add once user schema is up (after auth lesson)
 });
 

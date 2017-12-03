@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 
 const BoardSchema = new mongoose.Schema({
-    name: String
+    name: String,
+    event_id: 
 });
+
+module.exports = mongoose.model('Board', BoardSchema);

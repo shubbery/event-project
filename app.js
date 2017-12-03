@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 
 const events = require("./api/Events/controller");
 //require the controller because it imports the schema with it
-// const boards = require('./api/Boards/controller');
+const boards = require('./api/Boards/controller');
 const cards = require('./api/Cards/controller');
 
 //THE DATABASE
@@ -44,7 +44,7 @@ app.delete('/api/events/:id', events.deleteEvent);
 //DELETE
 // app.delete("/api/events/:event_id/boards/:id", boards.deleteBoard);
 //POST
-app.post("/api/events/:event_id/boards", events.postBoard);
+app.post("/api/events/:event_id/boards", boards.postBoard);
 
 //CAAARDS
 app.get("/api/cards", cards.getCards);
