@@ -1,6 +1,11 @@
+/* YOU ARE NOW WRITING IN MONGOOSE */
+
 //require schema for events
 const Event = require("./model.js");
 const events = {};
+
+//require schema for boards
+const BoardSchema = require('../boards/model.js');
 
 //GET METHOD - get events data
 events.getEvents = (req, res) => {
@@ -87,10 +92,12 @@ events.editEvent = (req, res) => {
 
 events.postBoard = (req, res) => {
     //save the request body as the model
+    const newBoardSchema = new BoardSchema();
     const model = req.body;
-    console.log(req.body);
-    console.log(req.params);
-    // const newBoard = { 'name': 'Board' };
+    console.log('req.body', req.body);
+    console.log('req.params', req.params);    
+    //assigning the schema and submitting the request body
+    const newBoard = Object.assign(newBoardSchema, model);
     //find the event by ID and edit it
     const board = Event.findById(req.params.event_id, (err, doc) => {
         if(err) {

@@ -110,14 +110,14 @@ class EventPage extends React.Component {
     }
     render() {
         return <div className="event-page" id={this.state._id}>
-            <ul className="admin-navigation">
-              <li className="admin-navigation__item">
-                <a href="" onClick={this.editEvent} className="admin-navigation__button">
+            <ul className="admin-nav">
+              <li className="admin-nav__item">
+                <a href="" onClick={this.editEvent} className="admin-nav__button">
                   ✏️
                 </a>
               </li>
-              <li className="admin-navigation__item">
-                <a href="" onClick={this.getDeleteModal} className="admin-navigation__button">
+              <li className="admin-nav__item">
+                <a href="" onClick={this.getDeleteModal} className="admin-nav__button">
                   💀
                 </a>
                 {this.state.deleteModal ? <DeleteModal closeModal={this.closeModal} getDeleteModal={this.getDeleteModal} deleteEvent={this.deleteEvent} /> : null}
@@ -139,12 +139,13 @@ class EventPage extends React.Component {
               </div>}
             <div className="event-boards">
                 { this.state.boards.length > 0 ? this.state.boards.map( board => <Board key={board._id} {...board}/> ) : null }
-                {/* New Board Button */}
-                <button onClick={e => {
-                    e.preventDefault();
-                    this.setState({ createBoardMode:true });
-                }}>Add a Board</button>
-                { this.state.createBoardMode ? <NewBoard event_id={this.props.match.params.eventId} createMode={this.closeBoardCreate}/> : null }
+                <div className="board-nav">
+                    <button onClick={e => {
+                        e.preventDefault();
+                        this.setState({ createBoardMode:true });
+                    }}>Add a Board</button>
+                    { this.state.createBoardMode ? <NewBoard event_id={this.props.match.params.eventId} createMode={this.closeBoardCreate}/> : null }
+                </div>
             </div>
             {this.state.errorAlert ? <ErrorAlert /> : null}
             <Navigation />
