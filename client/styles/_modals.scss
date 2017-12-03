@@ -1,0 +1,37 @@
+.modal_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .modal_bg {
+        position: absolute;
+        background: white;
+        opacity: 0.5;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+}
+
+.modal {  
+    width: 60%;
+    padding:20px;
+    background: $sprout-green;
+    border-radius: 3px;
+    button {
+        border: 2px solid $sprout-green;
+    }
+}
+
+//restructure styles for later
+// .modal {
+//     &__container {}
+//     button {}
+//     &__bg {}
+// }
