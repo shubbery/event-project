@@ -4,9 +4,6 @@
 const Event = require("./model.js");
 const events = {};
 
-//require schema for boards
-const BoardSchema = require('../boards/model.js');
-
 //GET METHOD - get events data
 events.getEvents = (req, res) => {
     //find event documents in mongoDB

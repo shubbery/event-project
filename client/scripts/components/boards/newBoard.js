@@ -1,33 +1,33 @@
 import React from 'react';
+// import Board from './board';
 
 class NewBoard extends React.Component{
     constructor(){
         super();
         this.createBoard = this.createBoard.bind(this);
         this.state = {
-            id: '',
             name: '',
-            errors: null
+            // event_id: this.props.event_id,
+            errors: '',
         };
     }
     createBoard(e){
         e.preventDefault();
-
         const req = this.state;
         delete req["errors"];
-
-        fetch(`/api/events/${this.props.event_id}/boards`, {
+        console.log(this.props.event_id);
+        fetch(`/api/boards`, {
           headers: {
-            Accept: "application/json",
             "Content-Type": "application/json"
           },
           method: "POST",
           body: JSON.stringify(req)
-        }).then(res => res.json()).then(json => console.log(json));
+        })
+        .then(res => res.json())
+        .then(json => console.log(json));
     }
     componentDidMount(){
-        // this.setState({ event_id: this.props.event_id });
-        // this.createBoard();
+        this.setState({ event_id: this.props.event_id });
     }
     render(){
         return <form action="" onSubmit={e => this.createBoard(e)} className="board-container new-board-form">
