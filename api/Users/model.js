@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const UserSchema = mongoose.Schema({
-    //first name
-    //last name
-    //email
+    name: String,
+    email: String,
     //password -- encrypt
     //photo
     //admin array
@@ -11,7 +11,9 @@ const UserSchema = mongoose.Schema({
     //attending array
 });
 
-// module.exports = mongoose.model("User", UserSchema);
+UserSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
+
+module.exports = mongoose.model("User", UserSchema);
 
 const UserAllergy = mongoose.Schema({
     //user_id
