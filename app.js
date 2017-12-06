@@ -9,8 +9,8 @@ const User = require('./api/Users/model');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
-const events = require("./api/Events/controller");
 //require the controller because it imports the schema with it
+const events = require("./api/Events/controller");
 const boards = require('./api/Boards/controller');
 const cards = require('./api/Cards/controller');
 
@@ -86,14 +86,14 @@ app.put('/api/events/:id', events.editEvent);
 app.delete('/api/events/:id', events.deleteEvent);
 
 //GET YER BOARDS
-// app.get('/api/events/:event_id/boards/:id', boards.getBoardById);
-// app.get('/api/events/:event_id/boards', boards.getBoards);
-//PUT
-// app.put("/api/events/:event_id/boards/:id", boards.editBoard);
-//DELETE
-// app.delete("/api/events/:event_id/boards/:id", boards.deleteBoard);
+app.get("/api/boards/:event_id", boards.getBoards);
+// app.get('/api/boards/:event_id', boards.getBoardByEvent);
 //POST
-app.post("/api/events/:event_id/boards", boards.postBoard);
+app.post("/api/boards", boards.postBoard);
+//DELETE
+app.delete("/api/boards/:id", boards.deleteBoard);
+//PUT - EDIT
+app.put("/api/boards/:id", boards.editBoard);
 
 //CAAARDS
 app.get("/api/cards", cards.getCards);

@@ -1,13 +1,13 @@
 // import React from 'react';
 
-//child component
+// // child component
 // import Board from './board';
 // import NewBoard from './newBoard';
 // class Boards extends React.Component{
 //     constructor(){
 //         super();
 //         this.addBoard = this.addBoard.bind(this);
-//         // this.fetchBoards = this.fetchBoards.bind(this);
+//         this.fetchBoards = this.fetchBoards.bind(this);
 //         this.state = {
 //             addMode: false,
 //             boards: [],
@@ -17,21 +17,21 @@
 //         e.preventDefault();
 //         this.setState({ addMode: true });
 //     }
-//     // fetchBoards(){
-//     //     //WE NEED TO SETUP ADVANCED QUERYING TO GET ONLY
-//     //     //BOARDS FOR THE SPECIFIC EVENT
-//     //     fetch(`/api/boards/?event_id=${this.props.event_id}`, {
-//     //       method: "GET",
-//     //       headers: {
-//     //         "Content-Type": "application/json",
-//     //         Accept: "application/json"
-//     //       }
-//     //     })
-//     //       .then(res => res.json())
-//     //       .then(boards => {
-//     //         this.setState({ boards });
-//     //     });
-//     // }
+//     fetchBoards(){
+//         //WE NEED TO SETUP ADVANCED QUERYING TO GET ONLY
+//         //BOARDS FOR THE SPECIFIC EVENT
+//         fetch(`/api/boards`, {
+//           method: "GET",
+//           headers: {
+//             "Content-Type": "application/json",
+//           }
+//         })
+//         .then(res => res.json())
+//         .then(boards => {
+//             // this.setState({ boards });
+//             console.log(boards);
+//         });
+//     }
 //     componentDidMount(){
 //         this.fetchBoards();
 //     }

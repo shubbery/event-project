@@ -5,7 +5,7 @@ import DeleteModal from '../deleteModal';
 import Navigation from '../navigation';
 import EditEvent from './editEvent';
 import ErrorAlert from '../errorAlert';
-// import Boards from '../boards/boards';
+import Boards from '../boards/boards';
 import Board from '../boards/board';
 import NewBoard from '../boards/newBoard';
 
