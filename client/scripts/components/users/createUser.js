@@ -39,9 +39,9 @@ class CreateUser extends React.Component {
             <div>
                 <h2>Create User</h2>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" placeholder="name" value={this.state.name} onChange={this.handleChange} />
-                    <input type="text" placeholder="email" value={this.state.email} onChange={this.handleChange} />
-                    <input type="password" placeholder="password" value={this.state.password} onChange={this.handleChange} />
+                    <input type="text" placeholder="name" name="name" onChange={this.handleChange} />
+                    <input type="text" placeholder="email" name="email" onChange={this.handleChange} />
+                    <input type="password" placeholder="password" name="password" onChange={this.handleChange} />
                     <button>Create User</button>
                 </form>
             </div>

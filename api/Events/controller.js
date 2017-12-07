@@ -21,9 +21,11 @@ events.getEvents = (req, res) => {
 
 events.getEventById = (req, res) => {
     const eventId = req.params.id;
+
     Event.findOne({ 
         _id: eventId 
-    }).then((doc) => {
+    }).populate('boards').exec()
+    .then((doc) => {
         res.status(200).send(doc);
     });
 }

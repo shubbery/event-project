@@ -15,8 +15,7 @@ class NewBoard extends React.Component{
         e.preventDefault();
         const req = this.state;
         delete req["errors"];
-        console.log(this.props.event_id);
-        fetch(`/api/boards`, {
+        fetch('/api/boards', {
           headers: {
             "Content-Type": "application/json"
           },
@@ -24,7 +23,7 @@ class NewBoard extends React.Component{
           body: JSON.stringify(req)
         })
         .then(res => res.json())
-        .then(json => console.log(json));
+        .then(json => {console.log(json)});
     }
     componentDidMount(){
         this.setState({ event_id: this.props.event_id });

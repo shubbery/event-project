@@ -87,7 +87,6 @@ app.delete('/api/events/:id', events.deleteEvent);
 
 //GET YER BOARDS
 app.get("/api/boards/:event_id", boards.getBoards);
-// app.get('/api/boards/:event_id', boards.getBoardByEvent);
 //POST
 app.post("/api/boards", boards.postBoard);
 //DELETE

@@ -13,18 +13,12 @@ class AppLayout extends React.Component {
     constructor() {
         super();
         this.state = {
-            appName: 'Sprout',
-            loggedIn: false,
+            appName: 'Sprout'
         };
-        this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
         this.refresh = this.refresh.bind(this);
     }
-    login() {
-        this.setState({
-            loggedIn: true,
-        });
-    }
+
     refresh() {
         fetch('/api/me', {
             method: 'GET',
@@ -35,8 +29,7 @@ class AppLayout extends React.Component {
             if (user._id) {
                 this.setState({
                     user: user,
-                });  
-                this.login();    
+                });    
             }
         });
     }
@@ -48,13 +41,12 @@ class AppLayout extends React.Component {
         })
         .then(() => {
             this.setState({
-                loggedIn: false,
-                user: null,
+                user: null
             });
         });
         
     }
-    
+
     componentDidMount() {
         this.refresh();
     }
@@ -68,8 +60,9 @@ class AppLayout extends React.Component {
                         <h1 className="site-title" id="site-title">{this.state.appName}</h1>
                     </Link>
                     <h2 className="site-title__subtitle">Your personal event planter</h2>
+                    
                     </header>
-                {this.state.loggedIn ?
+                {this.state.user ?
                 <div>
                 <Route
                     exact

@@ -14,7 +14,6 @@ class Board extends React.Component{
                 this.setState({editMode: true});
             }}>✏️</a>
             <h2>{this.props.name}</h2>
-            <p>id: {this.props._id}</p>
             {/* Need a pencil icon to trigger edit */}
             {/* Need something to kill/delete this board */}
             <button>Add Card</button>

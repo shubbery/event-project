@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const BoardSchema = require('../Boards/model');
 
 const EventSchema = new mongoose.Schema({
     name: {
@@ -17,11 +16,7 @@ const EventSchema = new mongoose.Schema({
     desc: {
         type: String,
         minlength: 1
-    },
-    boards: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Board'
-    }]
+    }
     //# of attendees - to add once user schema is up (after auth lesson)
 });
 

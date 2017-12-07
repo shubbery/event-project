@@ -17,7 +17,7 @@ boards.getBoards = (req, res) => {
 boards.postBoard = (req, res) => {
     const board = new Board(req.body);
 
-    boards.save()
+    board.save()
     .then(doc => res.status(200).send(doc))
     .catch(err => res.status(500).send(err));
 };

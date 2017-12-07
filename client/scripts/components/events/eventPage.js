@@ -30,7 +30,7 @@ class EventPage extends React.Component {
             date: '',
             loc: '',
             desc: '',
-            boards: [],
+            boardList: []
         }
     }
     handleInputChange(key, value) {
@@ -100,12 +100,24 @@ class EventPage extends React.Component {
         this.setState({ createBoardMode: false });
     }
     componentDidMount() {
+        //fetch the event data
         fetch(`/api/events/${this.props.match.params.eventId}`, {
             method: 'GET',
         })
         .then(res => res.json())
         .then(event => {
             this.setState(event);
+        });
+        //fetch the boards related to this event
+        fetch(`/api/boards/${this.props.match.params.eventId}`, {
+            method: 'GET',
+        })
+        .then(res => res.json())
+        .then(boards => {
+            console.log('boards for this event', boards);
+            this.setState({
+                boardList: boards
+            });
         });
     }
     render() {
@@ -138,7 +150,7 @@ class EventPage extends React.Component {
                 <p>{this.state.desc}</p>
               </div>}
             <div className="event-boards">
-                { this.state.boards.length > 0 ? this.state.boards.map( board => <Board key={board._id} {...board}/> ) : null }
+                { this.state.boardList.length > 0 ? this.state.boardList.map( board => <Board key={board._id} {...board}/> ) : null }
                 <div className="board-nav">
                     <button onClick={e => {
                         e.preventDefault();
