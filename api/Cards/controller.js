@@ -1,74 +1,24 @@
 const Card = require("./model.js");
 const cards = {};
 
-//GET METHOD - get cards data
+//GET METHOD
 cards.getCards = (req, res) => {
-    //find the card documents in mongoDB
-    Card.find((err, docs) => {
-        if(err){
-            res.status(400).send(err);
-        } else {
-            res.status(200).send(docs);
-        }
+    Card.find({ board_id: req.params.board_id })
+    .then(doc => {
+        res.status(200).send(doc);
+    })
+    .then(err => {
+        res.status(400).send(err);
     });
-}
+};
 
-cards.getCardById = (req, res) => {
-    const cardId = req.params.id;
-    Card.findOne({
-        _id: cardId
-    }).then(doc => {
-        res.status(200).send(doc)
-    });
-}
-
-//MAKE A cards.getCardByBoardId
-
-//POST METHOD - add new cards to a board
+// //POST METHOD
 cards.postCard = (req, res) => {
-    const cardModel = new Card();
-    const model = req.body;
-    const card = Object.assign(cardModel, model);
+    const card = new Card(req.body);
 
-    card.save((err, doc) => {
-        if(err){
-            res.status(500).send(err);
-        } else {
-            res.status(200).send(doc);
-        }
-    });
-}
-
-//DELETE METHOD
-cards.deleteCard = (req, res) => {
-    const cardId = req.params.id;
-    Card.remove({ _id: cardId }, (err, doc) => {
-        if(err){
-            res.status(500).send(err);
-        } else {
-            res.status(200).json({message: '🔥 Card has been deleted 🔥'});
-        }
-    });
-}
-
-//PUT METHOD
-cards.editCard = (req, res) => {
-    const model = req.body;
-    const card = Card.findById(req.params.id, (err, doc) => {
-        if(err){
-            res.status(500).send(err);
-        } else {
-            delete req.body._id;
-            const updatedEvent = Object.assign(doc, model);
-            updatedEvent.save((err, doc) => {
-                if(err){
-                    res.status(500).send(err);
-                } else{
-                    res.status(200).send(doc);
-                }
-            });
-        }
-    });
-}
+    card.save()
+    .then(doc => res.status(200).send(doc))
+    .catch(err => res.status(500).send(err));
+};
 
 module.exports = cards;
