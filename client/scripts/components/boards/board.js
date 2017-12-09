@@ -2,6 +2,7 @@ import React from 'react';
 
 import DeleteModal from '../deleteModal';
 import ErrorAlert from '../errorAlert';
+import EditBoard from './board';
 
 class Board extends React.Component{
     constructor(){
@@ -52,10 +53,15 @@ class Board extends React.Component{
                 e.preventDefault();
                 this.setState({deleteModal: true});
             }}>❌</a>
-            {this.state.deleteModal ? <DeleteModal closeModal={this.closeModal} getDeleteModal={this.getDeleteModal} delete={this.deleteBoard} /> : null}
-            <h2>{this.props.name}</h2>
-            {/* Need a pencil icon to trigger edit */}
-            {/* Need something to kill/delete this board */}
+            {this.state.deleteModal ? <DeleteModal closeModal={this.closeModal} getDeleteModal={this.getDeleteModal} delete={this.deleteBoard} item='board' /> : null}
+
+            {this.state.editMode ? <div>
+                <button onClick={e => {
+                    e.preventDefault();
+                    this.setState({editMode: false});
+                }}>x</button>
+              </div> : <h2>{this.props.name}</h2>}
+
             <button>Add Card</button>
         </div>;
     }

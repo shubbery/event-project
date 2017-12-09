@@ -125,7 +125,7 @@ class EventPage extends React.Component {
                 <a href="" onClick={this.getDeleteModal} className="admin-nav__button">
                   💀
                 </a>
-                {this.state.deleteModal ? <DeleteModal closeModal={this.closeModal} getDeleteModal={this.getDeleteModal} delete={this.deleteEvent} /> : null}
+                {this.state.deleteModal ? <DeleteModal closeModal={this.closeModal} getDeleteModal={this.getDeleteModal} delete={this.deleteEvent} item='event' /> : null}
               </li>
             </ul>
             {this.state.editMode ? <div>
