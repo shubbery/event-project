@@ -2,6 +2,8 @@ import React from 'react';
 
 import DeleteModal from '../deleteModal';
 import ErrorAlert from '../errorAlert';
+import Card from "../cards/card";
+import NewCard from "../cards/newCard";
 
 class Board extends React.Component{
     constructor(){
@@ -9,10 +11,13 @@ class Board extends React.Component{
         this.getDeleteModal = this.getDeleteModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.deleteBoard = this.deleteBoard.bind(this);
+        this.closeCardCreate = this.closeCardCreate.bind(this);
         this.state = {
             editMode: false,
             deleteModal: false,
-            errorAlert: false
+            errorAlert: false,
+            createCardMode: false,
+            cardList: []
         };
     }
     getDeleteModal(e){
@@ -41,7 +46,21 @@ class Board extends React.Component{
             deleteModal: false
         });
     }
-
+    closeCardCreate(){
+        this.setState({ createCardMode: false });
+    }
+    componentDidMount(){
+        //fetch the cards related to this event
+        fetch(`/api/cards/${this.props._id}`, {
+            method: 'GET',
+        })
+        .then(res => res.json())
+        .then(cards => {
+            this.setState({
+                cardList: cards
+            });
+        });
+    }
     render(){
         return <div className="board-container" id={this.props._id}>
             <a href="#" onClick={e => {
@@ -54,9 +73,12 @@ class Board extends React.Component{
             }}>❌</a>
             {this.state.deleteModal ? <DeleteModal closeModal={this.closeModal} getDeleteModal={this.getDeleteModal} delete={this.deleteBoard} /> : null}
             <h2>{this.props.name}</h2>
-            {/* Need a pencil icon to trigger edit */}
-            {/* Need something to kill/delete this board */}
-            <button>Add Card</button>
+            { this.state.cardList.length > 0 ? this.state.cardList.map(card => <Card key={card._id} {...card}/> ) : null }
+            <button onClick={e => {
+                e.preventDefault();
+                this.setState({ createCardMode: true });
+            }}>Add Card</button>
+            { this.state.createCardMode ? <NewCard board_id={this.props._id} createMode={this.closeCardCreate}/> : null }
         </div>;
     }
 }

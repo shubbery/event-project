@@ -15,7 +15,6 @@ cards.getCards = (req, res) => {
 // //POST METHOD
 cards.postCard = (req, res) => {
     const card = new Card(req.body);
-
     card.save()
     .then(doc => res.status(200).send(doc))
     .catch(err => res.status(500).send(err));
