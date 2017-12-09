@@ -95,15 +95,13 @@ app.delete("/api/boards/:id", boards.deleteBoard);
 app.put("/api/boards/:id", boards.editBoard);
 
 //CAAARDS
-app.get("/api/cards", cards.getCards);
-app.get("/api/cards/:id", cards.getCardById);
-// app.get("/api/cards/:event_id", cards.getCardByBoardId);
+app.get("/api/cards/:board_id", cards.getCards);
 // //POST
 app.post("/api/cards", cards.postCard);
 // //PUT
-app.put("/api/cards/:id", cards.editCard);
+// app.put("/api/cards/:id", cards.editCard);
 // //DELETE
-app.delete("/api/cards/:id", cards.deleteCard);
+// app.delete("/api/cards/:id", cards.deleteCard);
 
 // This route serves your index.html file (which
 // initializes React)
