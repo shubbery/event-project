@@ -22,8 +22,7 @@ class NewBoard extends React.Component{
           method: "POST",
           body: JSON.stringify(req)
         })
-        .then(res => res.json())
-        .then(json => {console.log(json)});
+        .then(res => res.json());
     }
     componentDidMount(){
         this.setState({ event_id: this.props.event_id });

@@ -5,7 +5,6 @@ import DeleteModal from '../deleteModal';
 import Navigation from '../navigation';
 import EditEvent from './editEvent';
 import ErrorAlert from '../errorAlert';
-import Boards from '../boards/boards';
 import Board from '../boards/board';
 import NewBoard from '../boards/newBoard';
 
@@ -66,21 +65,17 @@ class EventPage extends React.Component {
     }
     getDeleteModal(e){
         e.preventDefault();
-        console.log('RELEASE THE KRAKEN');
         this.setState({
             deleteModal: true
         });
     }
     deleteEvent(e){
         e.preventDefault();
-        console.log('BYE FELICIA 👋');
         const event_ID = this.props.match.params.eventId;
-        console.log(event_ID);
 
         fetch(`/api/events/${event_ID}`, {
             method: "DELETE"
         }).then(res => {
-            console.log('deleeeeete');
             // console.log(res);
             document.location.replace('/dashboard');
         }).catch(err => {
@@ -91,7 +86,6 @@ class EventPage extends React.Component {
     }
     closeModal(e){
         e.preventDefault();
-        console.log('close ze modal');
         this.setState({
             deleteModal: false
         });
@@ -114,7 +108,6 @@ class EventPage extends React.Component {
         })
         .then(res => res.json())
         .then(boards => {
-            console.log('boards for this event', boards);
             this.setState({
                 boardList: boards
             });
@@ -132,7 +125,7 @@ class EventPage extends React.Component {
                 <a href="" onClick={this.getDeleteModal} className="admin-nav__button">
                   💀
                 </a>
-                {this.state.deleteModal ? <DeleteModal closeModal={this.closeModal} getDeleteModal={this.getDeleteModal} deleteEvent={this.deleteEvent} /> : null}
+                {this.state.deleteModal ? <DeleteModal closeModal={this.closeModal} getDeleteModal={this.getDeleteModal} delete={this.deleteEvent} /> : null}
               </li>
             </ul>
             {this.state.editMode ? <div>
