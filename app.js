@@ -101,7 +101,7 @@ app.post("/api/cards", cards.postCard);
 // //PUT
 // app.put("/api/cards/:id", cards.editCard);
 // //DELETE
-// app.delete("/api/cards/:id", cards.deleteCard);
+app.delete("/api/cards/:id", cards.deleteCard);
 
 // This route serves your index.html file (which
 // initializes React)
