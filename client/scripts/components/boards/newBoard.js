@@ -15,7 +15,6 @@ class NewBoard extends React.Component{
         e.preventDefault();
         const req = this.state;
         delete req.errors;
-        console.log(req);
         fetch('/api/boards', {
           headers: {
             "Content-Type": "application/json"
@@ -25,7 +24,6 @@ class NewBoard extends React.Component{
         })
         .then(res => res.json())
         .then(json => {
-            console.log(json);
             this.props.getBoards();
             this.props.createMode();
         });

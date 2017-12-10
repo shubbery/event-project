@@ -16,7 +16,8 @@ const EventSchema = new mongoose.Schema({
     desc: {
         type: String,
         minlength: 1
-    }
+    },
+    admin: mongoose.Schema.Types.ObjectId,
     //# of attendees - to add once user schema is up (after auth lesson)
 });
 

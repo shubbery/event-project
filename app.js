@@ -35,6 +35,8 @@ app.use(express.static('assets'));
 
 // Include your own logic here (so it has precedence over the wildcard
 // route below)
+
+//USERS
 app.post('/api/login', passport.authenticate('local'), (req, res) => {
   res.send(req.user);
 });
@@ -66,7 +68,7 @@ app.get('/api/me', (req, res) => {
   if (req.user) {
     res.status(200).send(req.user);
   } else {
-    res.status(401).json({ message: "Unauthorized user times."});
+    res.status(401).json({ message: "Unauthorized."});
   }
 });
 
@@ -76,7 +78,7 @@ app.get('/api/logout', (req, res) => {
 });
 
 //GET yer events
-app.get('/api/events', events.getEvents);
+app.get('/api/events/:user_id', events.getEvents);
 app.get('/api/events/:id', events.getEventById);
 //POST yer events (new ones specifically)
 app.post('/api/events', events.postEvent);

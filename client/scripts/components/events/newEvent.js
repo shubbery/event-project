@@ -49,7 +49,6 @@ class NewEvent extends React.Component{
         })
         .then((res) => {
             if(res.ok){
-                // this.props.fetchEvents();
                 return res.json();                              
                 this.props.close();
             } else {
@@ -69,6 +68,11 @@ class NewEvent extends React.Component{
         } else {
             return <span>Did you forget {field_name}?</span>;
         }
+    }
+    componentDidMount() {
+        this.setState({
+           admin: this.props.admin 
+        })
     }
     render(){
         return <div className="modal_container">

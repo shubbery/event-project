@@ -35,6 +35,7 @@ class Navigation extends React.Component {
         <button onClick={this.addNewEvent} className="button-new-event">NEW EVENT</button>
         {this.state.createMode ? (
           <NewEvent
+            admin={this.props.user}
             fetchEvents={this.props.fetchEvents}
             close={this.closeNewEvent}
             prep={this.prepareClose}

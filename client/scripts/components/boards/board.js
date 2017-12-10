@@ -34,7 +34,6 @@ class Board extends React.Component{
         fetch(`/api/boards/${board_ID}`, {
             method: "DELETE"
         }).then(res => {
-            console.log(res);
             this.props.getBoards();
         }).catch(err => {
             this.setState({

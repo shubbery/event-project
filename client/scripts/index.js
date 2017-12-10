@@ -15,15 +15,8 @@ class AppLayout extends React.Component {
         this.state = {
             appName: 'Sprout'
         };
-        this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
         this.refresh = this.refresh.bind(this);
-    }
-
-    login() {
-        this.setState({
-            loggedIn: true,
-        });
     }
 
     refresh() {
@@ -37,7 +30,6 @@ class AppLayout extends React.Component {
                 this.setState({
                     user: user,
                 });  
-                this.login();    
             }
         });
     }
@@ -76,7 +68,7 @@ class AppLayout extends React.Component {
                     <Route
                         exact
                         path="/dashboard"
-                        render={(props) => <Dashboard {...props} /> } 
+                        render={(props) => <Dashboard user={this.state.user._id} {...props} /> } 
                     />
                     <Route path="/events/:eventId" component={EventPage} />
                     <Route path="/user" component={UserProfile} />
@@ -84,7 +76,7 @@ class AppLayout extends React.Component {
                     :
                     <div>
                     <CreateUser refresh={this.refresh} />
-                    <LoginUser refresh={this.refresh} login={this.login} />
+                    <LoginUser refresh={this.refresh} />
                     </div>
                     }
                 </div>

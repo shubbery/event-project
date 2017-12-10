@@ -6,17 +6,29 @@ const events = {};
 
 //GET METHOD - get events data
 events.getEvents = (req, res) => {
+    // if (req.params.user_id !== req.user) {
+    //     res.status(401).send("not the admin");
+    //   } else {
+    //     next();
+    //   }
     //find event documents in mongoDB
     //.find() takes error and documents
-    Event.find((err, docs) => {
-        if(err){
-            //if there's an error, the client f*cked up!
-            res.status(400).send(err);
-        } else {
-            //release the kraken!
-            res.status(200).send(docs);
-        }
+    Event.find({ admin: req.params.user_id })
+    .then((doc) => {
+      res.status(200).send(doc);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
     });
+    // Event.find((err, docs) => {
+    //     if(err){
+    //         //if there's an error, the client f*cked up!
+    //         res.status(400).send(err);
+    //     } else {
+    //         //release the kraken!
+    //         res.status(200).send(docs);
+    //     }
+    // });
 }
 
 events.getEventById = (req, res) => {
