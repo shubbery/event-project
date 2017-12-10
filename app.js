@@ -15,13 +15,13 @@ const boards = require('./api/Boards/controller');
 const cards = require('./api/Cards/controller');
 
 //THE DATABASE
-mongoose.connect("mongodb://localhost/events");
+mongoose.connect(process.env.MONGODB_SERVER);
 
 passport.use(User.createStrategy());
 app.use(bodyParser.json());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-app.use(session({ secret: 'mysecret', resave: false, saveUninitialized: true }));
+app.use(session({ secret: process.env.COOKIE_SECRET, resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -109,7 +109,7 @@ app.get('*', function(req, res, next) {
   res.sendFile(path.join(__dirname,'index.html'));
 });
 
-// Start your server, and listen on port 8080.
-app.listen(8080, function() {
-  console.log("App is now listening on port 8080!");
+// Start your server, and listen.
+app.listen(process.env.PORT, function() {
+  console.log(`App is now listening on port ${process.env.PORT}!`);
 });
