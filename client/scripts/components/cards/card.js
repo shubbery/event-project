@@ -26,13 +26,11 @@ class Card extends React.Component{
         e.preventDefault();
         this.setState({content: e.target.value});
     }
-    editCard(key){
-        console.log(key);
-        console.log(this.state);
+    editCard(){
         //make a fetch PUT to update the content info of the card
+        //state will be updated on input change and drag change
         const modifiedCard = Object.assign({}, this.state);
         delete modifiedCard.editMode;
-        console.log(modifiedCard);
 
         fetch(`/api/cards/${this.state.id}`, {
             headers: {
@@ -77,7 +75,7 @@ class Card extends React.Component{
         return (
             <form action="" className="card-container" onSubmit={e => {
                 e.preventDefault();
-                this.editCard('content');
+                this.editCard();
             }} id={this.props._id}>
                 { this.state.editMode 
                 ? 
@@ -89,7 +87,7 @@ class Card extends React.Component{
                     <p>{this.props.content}</p> }
                 { this.state.editMode
                 ?
-                    <div className="card-edit__buttons">
+                    <div className="card-buttons">
                         <button className="button--card" type="submit">👍</button>
                         <button className="button--card" onClick={e => {
                             e.preventDefault();
