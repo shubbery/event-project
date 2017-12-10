@@ -20,6 +20,7 @@ class EventPage extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
         this.closeBoardCreate = this.closeBoardCreate.bind(this);
+        this.getBoards = this.getBoards.bind(this);
         this.state = {
             deleteModal: false,
             editMode: false,
@@ -93,15 +94,7 @@ class EventPage extends React.Component {
     closeBoardCreate(){
         this.setState({ createBoardMode: false });
     }
-    componentDidMount() {
-        //fetch the event data
-        fetch(`/api/events/${this.props.match.params.eventId}`, {
-            method: 'GET',
-        })
-        .then(res => res.json())
-        .then(event => {
-            this.setState(event);
-        });
+    getBoards(){
         //fetch the boards related to this event
         fetch(`/api/boards/${this.props.match.params.eventId}`, {
             method: 'GET',
@@ -112,6 +105,18 @@ class EventPage extends React.Component {
                 boardList: boards
             });
         });
+    }
+    componentDidMount() {
+        //fetch the event data
+        fetch(`/api/events/${this.props.match.params.eventId}`, {
+            method: 'GET',
+        })
+        .then(res => res.json())
+        .then(event => {
+            this.setState(event);
+        });
+
+        this.getBoards();
     }
     render() {
         return <div className="event-page" id={this.state._id}>
@@ -149,7 +154,7 @@ class EventPage extends React.Component {
                         e.preventDefault();
                         this.setState({ createBoardMode:true });
                     }}>Add a Board</button>
-                    { this.state.createBoardMode ? <NewBoard event_id={this.props.match.params.eventId} createMode={this.closeBoardCreate}/> : null }
+                    { this.state.createBoardMode ? <NewBoard event_id={this.props.match.params.eventId} getBoards={this.getBoards} createMode={this.closeBoardCreate} /> : null }
                 </div>
             </div>
             {this.state.errorAlert ? <ErrorAlert /> : null}
