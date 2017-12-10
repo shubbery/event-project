@@ -33,6 +33,7 @@ class LoginUser extends React.Component {
             }
         })
         .then((json) => {
+            document.location.replace('/dashboard');
             this.props.refresh();
         });
 

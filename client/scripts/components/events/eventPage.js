@@ -77,7 +77,6 @@ class EventPage extends React.Component {
         fetch(`/api/events/${event_ID}`, {
             method: "DELETE"
         }).then(res => {
-            // console.log(res);
             document.location.replace('/dashboard');
         }).catch(err => {
             this.setState({
