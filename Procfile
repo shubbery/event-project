@@ -1,2 +1,1 @@
-backend: nodemon app.js
-frontend: gulp
+web: node app.js
