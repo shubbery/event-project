@@ -1,4 +1,5 @@
 import React from 'react';
+// import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 import DeleteModal from '../deleteModal';
 import ErrorAlert from '../errorAlert';
@@ -13,6 +14,8 @@ class Board extends React.Component{
         this.deleteBoard = this.deleteBoard.bind(this);
         this.closeCardCreate = this.closeCardCreate.bind(this);
         this.getCards = this.getCards.bind(this);
+        this.onDragStart = this.onDragStart.bind(this);
+        this.onDragEnd = this.onDragEnd.bind(this);
         this.state = {
             editMode: false,
             deleteModal: false,
@@ -89,6 +92,12 @@ class Board extends React.Component{
                 this.setState({ createCardMode: true });
             }}>Add Card</button>
             { this.state.createCardMode ? <NewCard board_id={this.props._id} createMode={this.closeCardCreate} getCards={this.getCards}/> : null }
+            <DragDropContext
+                onDragStart={this.onDragStart}
+                onDragEnd={this.onDragEnd}
+            >
+                <div>Hello world</div>
+            </DragDropContext>
         </div>;
     }
 }
