@@ -6,17 +6,48 @@ import ErrorAlert from '../errorAlert';
 class Card extends React.Component{
     constructor(){
         super();
-        this.editCard = this.editCard.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.editCardMode = this.editCardMode.bind(this);
+        // this.editCard = this.editCard.bind(this);
         this.deleteCard = this.deleteCard.bind(this);
         this.state = {
             id: '',
             board_id: '',
             content: '',
+            editMode: false,
         };
     }
-    editCard(e){
+    editCardMode(e){
         e.preventDefault();
         console.log(this.state);
+        this.setState({editMode: true});
+    }
+    handleInputChange(e){
+        e.preventDefault();
+        this.setState({content: e.target.value});
+    }
+    editCard(key){
+        console.log(key);
+        console.log(this.state);
+        //make a fetch PUT to update the content info of the card
+        const modifiedCard = Object.assign({}, this.state);
+        delete modifiedCard.editMode;
+        console.log(modifiedCard);
+
+        fetch(`/api/cards/${this.state.id}`, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'PUT',
+            credentials: 'include',
+            body: JSON.stringify(modifiedCard),
+        })
+        .then(res => res.json())
+        .then(json => {
+            console.log(json);
+            this.setState({ editMode: false });
+            this.props.getCards();
+        });
     }
     deleteCard(e){
         e.preventDefault();
@@ -44,11 +75,31 @@ class Card extends React.Component{
     }
     render(){
         return (
-            <div className="card-container" id={this.props._id}>
-                <p>{this.props.content}</p>
-                <a href="#" className="button--card" onClick={e => this.editCard(e)}>✏️</a>
-                <a href="#" className="button--card" onClick={e => this.deleteCard(e)}>🙅🏻</a>
-            </div>
+            <form action="" className="card-container" onSubmit={e => {
+                e.preventDefault();
+                this.editCard('content');
+            }} id={this.props._id}>
+                { this.state.editMode 
+                ? 
+                    <input  type="text" name="content"
+                            value={this.state.content}
+                            onChange={e => this.handleInputChange(e)}
+                    /> 
+                : 
+                    <p>{this.props.content}</p> }
+                { this.state.editMode
+                ?
+                    <div className="card-edit__buttons">
+                        <button className="button--card" type="submit">👍</button>
+                        <button className="button--card" onClick={e => {
+                            e.preventDefault();
+                            this.setState({editMode: false});
+                        }}>👎</button>
+                    </div>
+                :
+                    <a href="#" className="button--card" onClick={e => this.editCardMode(e)}>✏️</a> }
+                { !this.state.editMode && <a href="#" className="button--card" onClick={e => this.deleteCard(e)}>🙅🏻</a> }
+            </form>
         );
     }
 }

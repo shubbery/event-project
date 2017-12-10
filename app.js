@@ -99,7 +99,7 @@ app.get("/api/cards/:board_id", cards.getCards);
 // //POST
 app.post("/api/cards", cards.postCard);
 // //PUT
-// app.put("/api/cards/:id", cards.editCard);
+app.put("/api/cards/:id", cards.editCard);
 // //DELETE
 app.delete("/api/cards/:id", cards.deleteCard);
 
