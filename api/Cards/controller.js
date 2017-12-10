@@ -33,4 +33,24 @@ cards.deleteCard = (req, res) => {
     });
 };
 
+//PUT METHOD
+cards.editCard = (req, res) => {
+    const model = req.body;
+    const card = Card.findById(req.params.id, (err, doc) => {
+        if (err){
+            res.status(500).send(err);
+        } else {
+            delete req.body._id;
+            const updatedCard = Object.assign(doc, model);
+            updatedCard.save((err, doc) => {
+                if(err){
+                    res.status(500).send(err);
+                } else{
+                    res.status(200).send(doc);
+                }
+            });
+        }
+    });
+};
+
 module.exports = cards;

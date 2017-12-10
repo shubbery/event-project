@@ -23,6 +23,7 @@
     "passport": "^0.4.0",
     "passport-local-mongoose": "^4.4.0",
     "react": "^15.6.1",
+    "react-beautiful-dnd": "^3.0.0",
     "react-dom": "^15.6.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
