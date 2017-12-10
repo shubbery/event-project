@@ -32,13 +32,14 @@ events.getEvents = (req, res) => {
 }
 
 events.getEventById = (req, res) => {
-    const eventId = req.params.id;
-
-    Event.findOne({ 
-        _id: eventId 
-    }).populate('boards').exec()
-    .then((doc) => {
+    Event.findOne({ _id: req.params.event_id })
+    .populate("boards")
+    .exec()
+    .then(doc => {
         res.status(200).send(doc);
+    })
+    .catch(err => {
+        res.status(500).send(err);
     });
 }
 
