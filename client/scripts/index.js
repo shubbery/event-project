@@ -15,8 +15,15 @@ class AppLayout extends React.Component {
         this.state = {
             appName: 'Sprout'
         };
+        this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
         this.refresh = this.refresh.bind(this);
+    }
+
+    login() {
+        this.setState({
+            loggedIn: true,
+        });
     }
 
     refresh() {
@@ -29,7 +36,8 @@ class AppLayout extends React.Component {
             if (user._id) {
                 this.setState({
                     user: user,
-                });    
+                });  
+                this.login();    
             }
         });
     }
@@ -56,29 +64,29 @@ class AppLayout extends React.Component {
             <Router>
                 <div className="app">
                     <header className="intro">
-                    <Link to='/dashboard'>
+                    
+                    <Link to={ this.state.user ? '/dashboard' : '/'}>
                         <h1 className="site-title" id="site-title">{this.state.appName}</h1>
                     </Link>
-                    <h2 className="site-title__subtitle">Your personal event planter</h2>
-                    
+                        <h2 className="site-title__subtitle">Your personal event planter</h2>
+                    { this.state.user && <a href="#" onClick={ this.logout }><h4>Logout</h4></a> }
                     </header>
-                {this.state.user ?
-                <div>
-                <Route
-                    exact
-                    path="/dashboard"
-                    render={(props) => <Dashboard {...props} /> } 
-                />
-                <Route path="/events/:eventId" component={EventPage} />
-                <Route path="/user" component={UserProfile} />
-                </div>
-                :
-                <div>
-                <CreateUser refresh={this.refresh} />
-                <LoginUser refresh={this.refresh} login={this.login} />
-                </div>
-            }
-                {/* path will actually be /user/:userId */}
+                    {this.state.user ?
+                    <div>
+                    <Route
+                        exact
+                        path="/dashboard"
+                        render={(props) => <Dashboard {...props} /> } 
+                    />
+                    <Route path="/events/:eventId" component={EventPage} />
+                    <Route path="/user" component={UserProfile} />
+                    </div>
+                    :
+                    <div>
+                    <CreateUser refresh={this.refresh} />
+                    <LoginUser refresh={this.refresh} login={this.login} />
+                    </div>
+                    }
                 </div>
             </Router>
         )
