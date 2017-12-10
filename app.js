@@ -79,7 +79,7 @@ app.get('/api/logout', (req, res) => {
 
 //GET yer events
 app.get('/api/events/:user_id', events.getEvents);
-app.get('/api/events/:id', events.getEventById);
+app.get('/api/events/user_id/:event_id', events.getEventById);
 //POST yer events (new ones specifically)
 app.post('/api/events', events.postEvent);
 //PUT yer events (to edit them)

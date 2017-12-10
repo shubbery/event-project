@@ -70,7 +70,7 @@ class AppLayout extends React.Component {
                         path="/dashboard"
                         render={(props) => <Dashboard user={this.state.user._id} {...props} /> } 
                     />
-                    <Route path="/events/:eventId" component={EventPage} />
+                    <Route path="/events/:eventId" user={this.state.user._id} component={EventPage} />
                     <Route path="/user" component={UserProfile} />
                     </div>
                     :

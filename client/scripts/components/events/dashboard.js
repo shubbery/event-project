@@ -9,6 +9,7 @@ class Dashboard extends React.Component {
     super();
     this.fetchEvents = this.fetchEvents.bind(this);
     this.redirectOnSave = this.redirectOnSave.bind(this);
+    this.orderByDate = this.orderByDate.bind(this);
     
     this.state = {
       events: [],
@@ -17,7 +18,10 @@ class Dashboard extends React.Component {
   fetchEvents() {
     fetch(`/api/events/${this.props.user}`)
       .then(resp => resp.json())
-      .then(json => this.setState({ events: json }));
+      .then(json => {
+        this.setState({ events: json })
+        this.orderByDate();
+      });
   }
   componentDidMount(){
     this.fetchEvents();
@@ -25,6 +29,16 @@ class Dashboard extends React.Component {
   redirectOnSave(id){
     this.props.history.push(`/events/${id}`); 
   }
+  orderByDate() {
+      const orderedEvents = this.state.events;
+      orderedEvents.sort(function(a, b) {
+        var dateA = new Date(a.date), dateB = new Date(b.date);
+        return dateA - dateB;
+    });
+    this.setState({
+      events: orderedEvents
+    })  
+    }
   render() {
     return ( 
       <div>
