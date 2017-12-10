@@ -148,7 +148,7 @@ class EventPage extends React.Component {
                 <p>{this.state.desc}</p>
               </div>}
             <div className="event-boards">
-                { this.state.boardList.length > 0 ? this.state.boardList.map( board => <Board key={board._id} {...board}/> ) : null }
+                { this.state.boardList.length > 0 ? this.state.boardList.map( board => <Board key={board._id} {...board} getBoards={this.getBoards}/> ) : null }
                 <div className="board-nav">
                     <button onClick={e => {
                         e.preventDefault();

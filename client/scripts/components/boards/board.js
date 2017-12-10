@@ -35,6 +35,7 @@ class Board extends React.Component{
             method: "DELETE"
         }).then(res => {
             console.log(res);
+            this.props.getBoards();
         }).catch(err => {
             this.setState({
                 errorAlert: true
