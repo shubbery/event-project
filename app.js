@@ -72,6 +72,11 @@ app.get('/api/me', (req, res) => {
   }
 });
 
+app.get('/api/users/:user_id', (req, res) => {
+  const userId = req.params.user_id;
+  console.log(userId);
+});
+
 app.get('/api/logout', (req, res) => {
   req.logout();
   res.json('User logged out.');
