@@ -14,6 +14,9 @@ const events = require("./api/Events/controller");
 const boards = require('./api/Boards/controller');
 const cards = require('./api/Cards/controller');
 
+//middleware
+const requireLogin = require("./require_login");
+
 //THE DATABASE
 mongoose.connect(process.env.MONGODB_SERVER);
 
@@ -84,7 +87,7 @@ app.get('/api/logout', (req, res) => {
 
 //GET yer events
 app.get('/api/events/:user_id', events.getEvents);
-app.get('/api/events/user_id/:event_id', events.getEventById);
+app.get('/api/events/:user_id/:event_id', events.getEventById);
 //POST yer events (new ones specifically)
 app.post('/api/events', events.postEvent);
 //PUT yer events (to edit them)
@@ -103,11 +106,11 @@ app.put("/api/boards/:id", boards.editBoard);
 
 //CAAARDS
 app.get("/api/cards/:board_id", cards.getCards);
-// //POST
+//POST
 app.post("/api/cards", cards.postCard);
-// //PUT
+//PUT
 app.put("/api/cards/:id", cards.editCard);
-// //DELETE
+//DELETE
 app.delete("/api/cards/:id", cards.deleteCard);
 
 // This route serves your index.html file (which

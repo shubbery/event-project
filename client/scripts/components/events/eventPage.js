@@ -107,11 +107,12 @@ class EventPage extends React.Component {
     }
     componentDidMount() {
         //fetch the event data
-        fetch(`/api/events/${this.props.match.params.eventId}`, {
+        fetch(`/api/events/${this.props.user}/${this.props.match.params.eventId}`, {
             method: 'GET',
         })
         .then(res => res.json())
         .then(event => {
+            console.log(event);
             this.setState(event);
         });
 
