@@ -37,12 +37,12 @@ class CreateUser extends React.Component {
     render() {
         return (
             <div>
-                <h2>Create User</h2>
+                <h2>Sign Up</h2>
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" placeholder="name" name="name" onChange={this.handleChange} />
                     <input type="text" placeholder="email" name="email" onChange={this.handleChange} />
                     <input type="password" placeholder="password" name="password" onChange={this.handleChange} />
-                    <button>Create User</button>
+                    <button className="primary-btn">Create Your Account</button>
                 </form>
             </div>
         );

@@ -46,11 +46,11 @@ class LoginUser extends React.Component {
     render() {
         return (
             <div>
-                <h2>Login User</h2>
+                <h2>Login</h2>
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" placeholder="email" name="email" onChange={this.handleChange} />
                     <input type="password" placeholder="password" name="password" onChange={this.handleChange} />
-                    <button>Login User</button>
+                    <button className="primary-btn">Login</button>
                 </form>
             </div>
         );

@@ -74,9 +74,9 @@ class AppLayout extends React.Component {
                     <Route path="/user/:userId" component={UserProfile} />
                     </div>
                     :
-                    <div>
-                    <CreateUser refresh={this.refresh} />
-                    <LoginUser refresh={this.refresh} />
+                    <div className="user-form-wrapper">
+                        <CreateUser refresh={this.refresh} />
+                        <LoginUser refresh={this.refresh} />
                     </div>
                     }
                 </div>

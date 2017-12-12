@@ -137,7 +137,7 @@ class Board extends React.Component{
             : <h2>{this.props.name}</h2>}
 
             { this.state.cardList.length > 0 ? this.state.cardList.map(card => <Card key={card._id} getCards={this.getCards} {...card}/> ) : null }
-            <button onClick={e => {
+            <button className="primary-btn" onClick={e => {
                 e.preventDefault();
                 this.setState({ createCardMode: true });
             }}>Add Card</button>

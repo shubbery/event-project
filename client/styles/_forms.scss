@@ -1,3 +1,14 @@
+.user-form-wrapper {
+    background: $sprout-shadow;
+    width: 60%;
+    margin: 0 auto;
+    padding: 30px;
+    h2 {
+        text-transform: uppercase;
+        color: white;
+    }
+}
+
 textarea {
     display: block;
     padding: 10px 20px;
@@ -10,9 +21,9 @@ textarea {
 input {
     border-radius: 3px;
     border: 0;
-    padding: 10px 20px;
+    padding: 13px 20px;
     margin-top: 5px;
-    // width: 100%;
+    width: 100%;
 }
 
 .new-board-form {

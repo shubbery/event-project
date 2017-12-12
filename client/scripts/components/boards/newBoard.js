@@ -36,8 +36,8 @@ class NewBoard extends React.Component{
             <input type="text" placeholder="New Board Name" value={this.state.name} onChange={e => this.setState(
                 { name: e.target.value }
                 )} />
-            <button>Save</button>
-            <button onClick={e => {
+            <button className="primary-btn">Save</button>
+            <button className="close-btn" onClick={e => {
                 e.preventDefault();
                 this.props.createMode();
             }}>x</button>

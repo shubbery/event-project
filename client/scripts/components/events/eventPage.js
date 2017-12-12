@@ -134,10 +134,10 @@ class EventPage extends React.Component {
               </li>
             </ul>
             {this.state.editMode ? <div>
-                <button onClick={e => {
+                <button className="close-btn" onClick={e => {
                     e.preventDefault();
                     this.setState({editMode: false});
-                }}>x</button>
+                }}>✖</button>
                 <EditEvent e={this.state} saveEdit={this.saveEdit} handleInputChange={this.handleInputChange} handleDateChange={this.handleDateChange} />
               </div> : <div className="event-info">
                 <h1>{this.state.name}</h1>
@@ -150,7 +150,7 @@ class EventPage extends React.Component {
             <div className="event-boards">
                 { this.state.boardList.length > 0 ? this.state.boardList.map( board => <Board key={board._id} {...board} getBoards={this.getBoards}/> ) : null }
                 <div className="board-nav">
-                    <button onClick={e => {
+                    <button className="primary-btn" onClick={e => {
                         e.preventDefault();
                         this.setState({ createBoardMode:true });
                     }}>Add a Board</button>
