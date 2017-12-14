@@ -18,7 +18,9 @@ const EventSchema = new mongoose.Schema({
         minlength: 1
     },
     admin: mongoose.Schema.Types.ObjectId,
-    //# of attendees - to add once user schema is up (after auth lesson)
+    invitees: [mongoose.Schema.Types.ObjectId],
+    attending: [mongoose.Schema.Types.ObjectId],
+    notAttending: [mongoose.Schema.Types.ObjectId]
 });
 
 module.exports = mongoose.model('Event', EventSchema);
