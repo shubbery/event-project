@@ -7,6 +7,7 @@ import EditEvent from './editEvent';
 import ErrorAlert from '../errorAlert';
 import Board from '../boards/board';
 import NewBoard from '../boards/newBoard';
+import UserList from '../users/userList';
 
 class EventPage extends React.Component {
     constructor() {
@@ -30,7 +31,11 @@ class EventPage extends React.Component {
             date: '',
             loc: '',
             desc: '',
-            boardList: []
+            boardList: [],
+            admin: '',
+            invitees: [],
+            attending: [],
+            notAttending: []
         }
     }
     handleInputChange(key, value) {
@@ -112,7 +117,6 @@ class EventPage extends React.Component {
         })
         .then(res => res.json())
         .then(event => {
-            console.log(event);
             this.setState(event);
         });
 
@@ -147,6 +151,11 @@ class EventPage extends React.Component {
                 <h4>@{this.state.loc}</h4>
                 <p>{this.state.desc}</p>
               </div>}
+            <div className="event-guests">
+                <UserList listType="Attending" list={this.state.attending}/>
+                <UserList listType="Not Attending" list={this.state.notAttending}/>
+                <UserList listType="Not Responded" list={this.state.invitees}/>
+            </div>
             <div className="event-boards">
                 { this.state.boardList.length > 0 ? this.state.boardList.map( board => <Board key={board._id} {...board} getBoards={this.getBoards}/> ) : null }
                 <div className="board-nav">

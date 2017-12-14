@@ -77,7 +77,13 @@ app.get('/api/me', (req, res) => {
 
 app.get('/api/users/:user_id', (req, res) => {
   const userId = req.params.user_id;
-  console.log(userId);
+  const user = User.findById(userId, (err, doc) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(doc);
+    }
+  });
 });
 
 app.get('/api/logout', (req, res) => {
