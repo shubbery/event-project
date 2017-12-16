@@ -4,25 +4,38 @@ class UserList extends React.Component{
     constructor(){
         super();
         this.getUser = this.getUser.bind(this);
+        this.state = {
+            attending: [],
+            notAttending: [],
+            invitees: []
+        }
     }
-    getUser(id){
-        fetch(`/api/users/${id}`, {
-            method: "GET"
+
+    getUser(){
+        console.log(this.props.list);
+        let list = [];
+        const key = this.props.listType;
+        this.props.list.map(userID => {
+            fetch(`/api/users/${userID}`, {
+                method: "GET"
+            })
+            .then(res => res.json())
+            .then(user => {
+                list.push(user)
+                this.setState({
+                    key: list
+                })
+            })
         })
-        .then(res => res.json())
-        .then(user => {
-            console.log(user);
-        });
     }
-    componentDidMount(){
+    componentDidMount() {
+        this.getUser();
     }
     render(){
-        return <div className="event-list">
-            <h2>{this.props.listType}</h2>
+        return <div className={this.props.listType}>
+            <h2>{this.props.listTitle}</h2>
             <ul className="user-container">
-              {this.props.list ? this.props.list.map(userID => {
-                    this.getUser(userID);
-                  }) : null}
+            
             </ul>
           </div>;
     }

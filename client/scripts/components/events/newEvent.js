@@ -33,7 +33,6 @@ class NewEvent extends React.Component{
     }
     handleSave(e){
         e.preventDefault();
-        console.log('saved', this.state);
         
         const event_req = this.state;
         delete event_req["picker"];
@@ -56,7 +55,6 @@ class NewEvent extends React.Component{
             }
         })
         .then((res) => {
-            console.log(res);
             this.props.redirectOnSave(res._id);
         });
     }

@@ -152,9 +152,9 @@ class EventPage extends React.Component {
                 <p>{this.state.desc}</p>
               </div>}
             <div className="event-guests">
-                <UserList listType="Attending" list={this.state.attending}/>
-                <UserList listType="Not Attending" list={this.state.notAttending}/>
-                <UserList listType="Not Responded" list={this.state.invitees}/>
+                <UserList listType="attending" listTitle="Attending" list={this.state.attending}/>
+                <UserList listType="notAttending" listTitle="Not Attending" list={this.state.notAttending}/>
+                <UserList listType="invitees" listTitle="Not Responded" list={this.state.invitees}/>
             </div>
             <div className="event-boards">
                 { this.state.boardList.length > 0 ? this.state.boardList.map( board => <Board key={board._id} {...board} getBoards={this.getBoards}/> ) : null }
