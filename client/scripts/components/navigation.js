@@ -32,7 +32,7 @@ class Navigation extends React.Component {
     return (
       <nav className="main-nav">
         <Link to='/user/:userId' className="button-profile">User Profile</Link>
-        <button onClick={this.addNewEvent} className="primary-btn">NEW EVENT</button>
+        <button onClick={this.addNewEvent} className="add-btn"><span>+</span></button>
         {this.state.createMode ? (
           <NewEvent
             admin={this.props.user}

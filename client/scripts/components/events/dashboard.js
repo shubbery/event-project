@@ -40,10 +40,15 @@ class Dashboard extends React.Component {
     })  
     }
   render() {
+    const empty = <section className="empty">
+                    <h3>Nothing to see here!</h3>
+                    <p>🙅🏽</p>
+                    <p>Create an event below!</p>
+                  </section>;
     return ( 
       <div>
         <div className="eventList" id={this.props.user}>
-            { this.state.events.length > 0 ? this.state.events.map(event => ( <EventCard key={ event._id } user={ this.props.user } {...event} />)) : 'Nothing to see here! 🙅🏽 Create an event below!' }
+            { this.state.events.length > 0 ? this.state.events.map(event => ( <EventCard key={ event._id } user={ this.props.user } {...event} />)) :  empty}
         </div>
         <Navigation fetchEvents={this.fetchEvents} user={ this.props.user } redirectOnSave={this.redirectOnSave} />
       </div>

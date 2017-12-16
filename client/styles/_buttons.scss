@@ -14,14 +14,32 @@
         box-shadow: none;
     }
 }
-.add-board-btn {
+.add-btn {
+    height: 60px;
+    width: 60px;
+    border: 3px solid $color-white;
+    background: transparent;
+    border-radius: 50%;
+    position: relative;
+    span {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -4px;
+        color: $color-white;
+        font-size: 4rem;
+        z-index: -1;
+    }
+}
+
+.add-board-button {
     flex: 0 0 100%;
     margin: 20px 10px;
 }
 
 .primary-btn {
-    border: 3px solid white;
-    color: white;
+    border: 3px solid $color-white;
+    color: $color-white;
     text-transform: uppercase;
     background: transparent;
     border-radius: 3px;
@@ -35,7 +53,7 @@
 .close-btn {
     background: none;
     border: 0;
-    color: white;
+    color: $color-white;
     padding: 0 10px;
     font-size: 2rem;
 }

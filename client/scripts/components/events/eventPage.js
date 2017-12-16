@@ -124,19 +124,22 @@ class EventPage extends React.Component {
     }
     render() {
         return <div className="event-page" id={this.state._id}>
-            <ul className="admin-nav">
-              <li className="admin-nav__item">
-                <a href="" onClick={this.editEvent} className="admin-nav__button">
-                  ✏️
-                </a>
-              </li>
-              <li className="admin-nav__item">
-                <a href="" onClick={this.getDeleteModal} className="admin-nav__button">
-                  💀
-                </a>
-                {this.state.deleteModal ? <DeleteModal closeModal={this.closeModal} getDeleteModal={this.getDeleteModal} delete={this.deleteEvent} item='event' /> : null}
-              </li>
-            </ul>
+            <header>
+                <h1>{this.state.name}</h1>
+                <ul className="admin-nav">
+                <li className="admin-nav__item">
+                    <a href="" onClick={this.editEvent} className="admin-nav__button">
+                    ✏️
+                    </a>
+                </li>
+                <li className="admin-nav__item">
+                    <a href="" onClick={this.getDeleteModal} className="admin-nav__button">
+                    💀
+                    </a>
+                    {this.state.deleteModal ? <DeleteModal closeModal={this.closeModal} getDeleteModal={this.getDeleteModal} delete={this.deleteEvent} item='event' /> : null}
+                </li>
+                </ul>
+            </header>
             {this.state.editMode ? <div>
                 <button className="close-btn" onClick={e => {
                     e.preventDefault();
@@ -144,10 +147,9 @@ class EventPage extends React.Component {
                 }}>✖</button>
                 <EditEvent e={this.state} saveEdit={this.saveEdit} handleInputChange={this.handleInputChange} handleDateChange={this.handleDateChange} />
               </div> : <div className="event-info">
-                <h1>{this.state.name}</h1>
-                <h6>
+                <h4>
                   {Moment(this.state.date).format("MMMM Do, YYYY")} at {Moment(this.state.date).format("LT")}
-                </h6>
+                </h4>
                 <h4>@{this.state.loc}</h4>
                 <p>{this.state.desc}</p>
               </div>}

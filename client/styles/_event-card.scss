@@ -1,6 +1,6 @@
 .event-card {
     &__title {
-        color: $font-grey;
+        color: $color-black;
     }
     &__container {
         padding: 10px;
@@ -11,7 +11,7 @@
         height: 250px;
         padding: 30px;
         border-radius: 5px;
-        color:$font-grey;
+        color:$color-black;
         * {
             margin: 0;
         }
