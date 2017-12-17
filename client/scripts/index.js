@@ -74,7 +74,8 @@ class AppLayout extends React.Component {
                                     <div className="site-title__logo"></div>
                                 </div>
                             </Link>
-                            <h2 className="site-title__subtitle">Your personal event planter</h2>
+                            { !this.state.summaryMode 
+                    ? <h2 className="site-title__subtitle">Your personal event planter</h2> : null }
                         </div>
                     { this.state.user && <a href="#" onClick={ this.logout }><h4 className="logout">Logout</h4></a> }
                     </header>
