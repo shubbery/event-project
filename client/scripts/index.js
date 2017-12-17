@@ -13,10 +13,12 @@ class AppLayout extends React.Component {
     constructor() {
         super();
         this.state = {
-            appName: 'Sprout'
+            appName: 'Sprout',
+            summaryMode: true,
         };
         this.logout = this.logout.bind(this);
         this.refresh = this.refresh.bind(this);
+        this.closeIntro = this.closeIntro.bind(this);
     }
 
     refresh() {
@@ -48,6 +50,12 @@ class AppLayout extends React.Component {
             document.location.replace('/');
         });
         
+    }
+
+    closeIntro(e){
+        e.preventDefault();
+        console.log('clooseeeee');
+        this.setState({summaryMode: false});
     }
 
     componentDidMount() {
@@ -82,6 +90,21 @@ class AppLayout extends React.Component {
                     </div>
                     :
                     <div className="user-form-wrapper">
+                    { this.state.summaryMode 
+                    ? 
+                        <div className="summary summary-container">
+                            <div className="summary-wrapper">
+                                <div className="summary-logo"></div>
+                                <h1>Sprout</h1>
+                                <h2 className="subtitle">is your personal event planter.</h2>
+                                <p>
+                                    Keep track of your events, hosted or invited to. Collaborate with others and watch your events grow!
+                                </p>
+                                <button className="primary-btn" onClick={e => {this.closeIntro(e);}}>Let's get started!</button>
+                            </div>
+                        </div>
+                    : 
+                        null }
                         <CreateUser refresh={this.refresh} />
                         <LoginUser refresh={this.refresh} />
                     </div>

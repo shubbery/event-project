@@ -8,6 +8,37 @@
     padding: 20px 0 50px;
 }
 
+.summary {
+    &-container {
+        position: absolute;
+        top:0; bottom:0;
+        left:0; right:0;
+        display: flex;
+        background: $sprout-shadow;
+        color: #FFF;
+        text-align: center;
+        border-radius: $border-radius;
+    }
+    &-wrapper {
+        margin: auto;
+        max-width: 600px;
+        width: 60%;
+        h2.subtitle {
+            margin-bottom: 40px;
+            text-transform: lowercase;
+        }
+        p { line-height: 1.25; }
+    }
+    &-logo {
+        margin: 0 auto;
+        width: 80px; height: 80px;
+        // background-image: url('../assets/app-logo.svg');
+        background-image: url('../assets/sprout-logo.svg');
+        background-size: cover;
+        background-position: center;
+    }
+}
+
 .eventList {
     display: flex;
     flex-wrap: wrap;
