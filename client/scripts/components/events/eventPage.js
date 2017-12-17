@@ -120,12 +120,17 @@ class EventPage extends React.Component {
         .then(res => res.json())
         .then(user => {
             //state is immutable - do not mutate it
-            if(type === 'attending'){
-                console.log('attending', user);
-            } else if( type === 'notAttending'){
+            //render jsx tho
+            if(type == 'attending'){
+                // console.log(user);
+                // console.log('attending', user.name);
+                return <li key={user._id}><p>{user.name}</p></li>;
+            } else if( type == 'notAttending'){
                 console.log("not attending", user);
+                return <li key={user._id}><p>{user.name}</p></li>;
             } else{
                 console.log("not responded", user);
+                return <li key={user._id}><p>{user.name}</p></li>;
             }
         });
     }
@@ -177,11 +182,9 @@ class EventPage extends React.Component {
                     <div className="attending">
                         <h2>Attending</h2>
                         <ul className="user-list">
-                            {this.state.attending.map(user => {
-                                return <li key={user}>
-                                    {this.getUser(user, 'attending')}
-                                  </li>;
-                            })}
+                            {this.state.attending ? this.state.attending.map(user => {
+                                this.getUser(user, "attending");
+                            }) : null}
                             <li><p>Leia Organa</p></li>
                             <li><p>Finn, just Finn</p></li>
                         </ul>
@@ -190,9 +193,7 @@ class EventPage extends React.Component {
                         <h2>Not Attending</h2>
                         <ul className="user-list">
                             {this.state.notAttending.map(user => {
-                                return <li key={user}>
-                                    {this.getUser(user, 'notAttending')}
-                                  </li>;
+                                this.getUser(user, "notAttending");
                             })}
                             <li><p>Kylo Ren</p></li>
                         </ul>
@@ -201,9 +202,7 @@ class EventPage extends React.Component {
                         <h2>Not Responded</h2>
                         <ul className="user-list">
                             {this.state.invitees.map(user => {
-                                return <li key={user}>
-                                    {this.getUser(user, 'invitees')}
-                                  </li>;
+                                this.getUser(user, "invitees");
                             })}
                             <li><p>Rey from Jakku</p></li>
                             <li><p>Luke Skywalker</p></li>
