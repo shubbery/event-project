@@ -75,7 +75,7 @@ class AppLayout extends React.Component {
                         render={(props) => <Dashboard user={this.state.user._id} {...props} /> } 
                     />
                     <Route path="/events/:eventId" user={this.state.user._id} component={EventPage} />
-                    <Route path="/user/:userId" component={UserProfile} />
+                    <Route path="/user/:userId" user={this.state.user._id} component={UserProfile} />
                     </div>
                     :
                     <div className="user-form-wrapper">
