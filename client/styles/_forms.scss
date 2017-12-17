@@ -11,6 +11,11 @@
     }
 }
 
+.error-message {
+    color: $error-red;
+    padding: 20px 0;
+}
+
 textarea {
     display: block;
     padding: 10px 20px;

@@ -60,11 +60,11 @@ class NewEvent extends React.Component{
     }
     renderError(error_obj, field_name){
         if( error_obj.kind === 'required' ){
-            return <span>We need to know the {field_name}!</span>;
+            return <span className="error-message">We need to know the {field_name}!</span>;
         } else if( error_obj.kind === 'minlength' ) {
-            return <span>{field_name} isn't long enough.</span>;
+            return <span className="error-message">{field_name} isn't long enough.</span>;
         } else {
-            return <span>Did you forget {field_name}?</span>;
+            return <span className="error-message">Did you forget {field_name}?</span>;
         }
     }
     componentDidMount() {
