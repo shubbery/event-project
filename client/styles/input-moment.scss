@@ -251,3 +251,13 @@
       text-align: center;
     }
   }
+
+//buttons
+div.options {
+  & > button.ion-clock.im-btn,
+  & > button.ion-calendar.im-btn.is-active,
+  & > button.ion-calendar.im-btn,
+  & > button.ion-clock.im-btn.is-active {
+    margin: 0;
+  }
+}
