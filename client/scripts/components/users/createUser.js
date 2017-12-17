@@ -27,6 +27,7 @@ class CreateUser extends React.Component {
         .then((res) => res.json())
         .then((json) => {
             this.props.refresh();
+            this.props.history.push('/dashboard');
         });
     }
     handleChange(e) {

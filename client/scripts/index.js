@@ -54,7 +54,6 @@ class AppLayout extends React.Component {
 
     closeIntro(e){
         e.preventDefault();
-        console.log('clooseeeee');
         this.setState({summaryMode: false});
     }
 
@@ -106,7 +105,7 @@ class AppLayout extends React.Component {
                         </div>
                     : 
                         null }
-                        <CreateUser refresh={this.refresh} />
+                        <Route path="/" render={((props) => <CreateUser refresh={this.refresh} {...props} />)} /> 
                         <LoginUser refresh={this.refresh} />
                     </div>
                     }
