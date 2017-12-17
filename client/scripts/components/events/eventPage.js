@@ -22,6 +22,7 @@ class EventPage extends React.Component {
         this.handleDateChange = this.handleDateChange.bind(this);
         this.closeBoardCreate = this.closeBoardCreate.bind(this);
         this.getBoards = this.getBoards.bind(this);
+        this.getUser = this.getUser.bind(this);
         this.state = {
             deleteModal: false,
             editMode: false,
@@ -35,12 +36,15 @@ class EventPage extends React.Component {
             admin: '',
             invitees: [],
             attending: [],
-            notAttending: []
+            notAttending: [],
+            attendingNames: [],
+            inviteeNames: [],
+            notAttendingNames: [],
         }
     }
     handleInputChange(key, value) {
         this.setState({
-        [key]: value,
+            [key]: value,
         });
     }
     handleDateChange(m){
@@ -110,6 +114,21 @@ class EventPage extends React.Component {
             });
         });
     }
+    getUser(user_id, type){
+        //get user profile by user id
+        fetch(`/api/users/${user_id}`)
+        .then(res => res.json())
+        .then(user => {
+            //state is immutable - do not mutate it
+            if(type === 'attending'){
+                console.log('attending', user);
+            } else if( type === 'notAttending'){
+                console.log("not attending", user);
+            } else{
+                console.log("not responded", user);
+            }
+        });
+    }
     componentDidMount() {
         //fetch the event data
         fetch(`/api/events/${this.props.user}/${this.props.match.params.eventId}`, {
@@ -155,9 +174,44 @@ class EventPage extends React.Component {
                         <p>{this.state.desc}</p>
                     </div>}
                 <div className="event-page__guests">
-                    <UserList listType="attending" listTitle="Attending" list={this.state.attending}/>
-                    <UserList listType="notAttending" listTitle="Not Attending" list={this.state.notAttending}/>
-                    <UserList listType="invitees" listTitle="Not Responded" list={this.state.invitees}/>
+                    <div className="attending">
+                        <h2>Attending</h2>
+                        <ul className="user-list">
+                            {this.state.attending.map(user => {
+                                return <li key={user}>
+                                    {this.getUser(user, 'attending')}
+                                  </li>;
+                            })}
+                            <li><p>Leia Organa</p></li>
+                            <li><p>Finn, just Finn</p></li>
+                        </ul>
+                    </div>
+                    <div className="notAttending">
+                        <h2>Not Attending</h2>
+                        <ul className="user-list">
+                            {this.state.notAttending.map(user => {
+                                return <li key={user}>
+                                    {this.getUser(user, 'notAttending')}
+                                  </li>;
+                            })}
+                            <li><p>Kylo Ren</p></li>
+                        </ul>
+                    </div>
+                    <div className="invitees">
+                        <h2>Not Responded</h2>
+                        <ul className="user-list">
+                            {this.state.invitees.map(user => {
+                                return <li key={user}>
+                                    {this.getUser(user, 'invitees')}
+                                  </li>;
+                            })}
+                            <li><p>Rey from Jakku</p></li>
+                            <li><p>Luke Skywalker</p></li>
+                        </ul>
+                    </div>
+                    {/* <UserList listType="attending" listTitle="Attending" users={this.state.attending}/>
+                    <UserList listType="notAttending" listTitle="Not Attending" users={this.state.notAttending}/>
+                    <UserList listType="invitees" listTitle="Not Responded" users={this.state.invitees}/> */}
                 </div>
             </div>
             <div className="event-boards">
