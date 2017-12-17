@@ -20,12 +20,16 @@
 }
 
 .modal {  
+    max-width: 500px;
     width: 60%;
-    padding:20px;
+    padding: 40px 20px;
     background: $sprout-green;
-    border-radius: 3px;
+    border-radius: $border-radius;
+    text-align: center;
+    p { margin-bottom: 20px; }
     button {
-        border: 2px solid $sprout-green;
+        margin: 0 5px;
+        border: 2px solid #FFF;
     }
 }
 

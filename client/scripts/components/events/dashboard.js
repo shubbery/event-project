@@ -41,10 +41,11 @@ class Dashboard extends React.Component {
     }
   render() {
     const empty = <section className="empty">
-                    <h3>Nothing to see here!</h3>
-                    <p>🙅🏽</p>
-                    <p>Create an event below!</p>
-                  </section>;
+        <h3>Your garden looks empty.</h3>
+        <p className="sprouts">🌱🌱🌱</p>
+        <p>Why not start planting some events?</p>
+        <p>Click the plus sign below.</p>
+      </section>;
     return ( 
       <div>
         <div className="eventList" id={this.props.user}>

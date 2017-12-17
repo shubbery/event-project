@@ -3,6 +3,7 @@
     width: 60%;
     margin: 0 auto;
     padding: 30px;
+    border-radius: $border-radius;
     h2 {
         text-transform: uppercase;
         color: white;
@@ -13,13 +14,12 @@ textarea {
     display: block;
     padding: 10px 20px;
     width: 100%;
-    border-radius: 3px;    
-    margin-right: 22px;
-    margin-top: 5px;
+    border-radius: $border-radius;
     border: 0;
+    margin: 5px 22px 5px 0;
 }
 input {
-    border-radius: 3px;
+    border-radius: $border-radius;
     border: 0;
     padding: 13px 20px;
     margin-top: 5px;

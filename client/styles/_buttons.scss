@@ -12,8 +12,10 @@
 .modal {
     button {
         box-shadow: none;
+        // @include box-shadow(4px);
     }
 }
+
 .add-btn {
     height: 60px;
     width: 60px;
@@ -42,7 +44,7 @@
     color: $color-white;
     text-transform: uppercase;
     background: transparent;
-    border-radius: 3px;
+    border-radius: $border-radius;
     padding: 10px 20px;
     cursor: pointer;
     margin: auto;

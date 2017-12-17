@@ -140,23 +140,25 @@ class EventPage extends React.Component {
                 </li>
                 </ul>
             </header>
-            {this.state.editMode ? <div>
-                <button className="close-btn" onClick={e => {
-                    e.preventDefault();
-                    this.setState({editMode: false});
-                }}>✖</button>
-                <EditEvent e={this.state} saveEdit={this.saveEdit} handleInputChange={this.handleInputChange} handleDateChange={this.handleDateChange} />
-              </div> : <div className="event-info">
-                <h4>
-                  {Moment(this.state.date).format("MMMM Do, YYYY")} at {Moment(this.state.date).format("LT")}
-                </h4>
-                <h4>@{this.state.loc}</h4>
-                <p>{this.state.desc}</p>
-              </div>}
-            <div className="event-guests">
-                <UserList listType="attending" listTitle="Attending" list={this.state.attending}/>
-                <UserList listType="notAttending" listTitle="Not Attending" list={this.state.notAttending}/>
-                <UserList listType="invitees" listTitle="Not Responded" list={this.state.invitees}/>
+            <div className="event-page__container">
+                {this.state.editMode ? <div className="event-page__info">
+                    <button className="close-btn" onClick={e => {
+                            e.preventDefault();
+                            this.setState({editMode: false});
+                    }}>✖</button>
+                    <EditEvent e={this.state} saveEdit={this.saveEdit} handleInputChange={this.handleInputChange} handleDateChange={this.handleDateChange} />
+                    </div> : <div className="event-page__info">
+                        <h4>
+                        {Moment(this.state.date).format("MMMM Do, YYYY")} at {Moment(this.state.date).format("LT")}
+                        </h4>
+                        <h4>@{this.state.loc}</h4>
+                        <p>{this.state.desc}</p>
+                    </div>}
+                <div className="event-page__guests">
+                    <UserList listType="attending" listTitle="Attending" list={this.state.attending}/>
+                    <UserList listType="notAttending" listTitle="Not Attending" list={this.state.notAttending}/>
+                    <UserList listType="invitees" listTitle="Not Responded" list={this.state.invitees}/>
+                </div>
             </div>
             <div className="event-boards">
                 { this.state.boardList.length > 0 ? this.state.boardList.map( board => <Board key={board._id} {...board} getBoards={this.getBoards}/> ) : null }

@@ -4,6 +4,11 @@ body {
     color: $color-white;
 }
 
+h1 {
+    font-size: 3em;
+    margin: auto 0;
+}
+
 a {
     text-decoration: none;
     color: $color-white;
@@ -12,40 +17,6 @@ a {
 header {
     display: flex;
     justify-content: space-between;
-}
-
-.site-title__wrapper {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    svg {
-        position: absolute;
-        right: -45px;
-        top: -15px;
-        z-index: 0;
-        max-width: 70px;
-    }
-    .cls-1 {
-        fill:#43a25d;
-    }
-    .cls-2 {
-        fill:#55bb6f;
-    }
-    .cls-3 {
-        fill:#8fc79e;
-    }
-}
-
-.site-title {
-    color: #FFF;
-    font-size: 40px;
-    margin: 5px 0;
-    &__subtitle {
-        color: $color-white;
-        font-size: 12px;
-        margin-top: 0;
-        text-transform: lowercase;
-    }
 }
 
 .logout {
