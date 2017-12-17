@@ -39,8 +39,8 @@ class NewCard extends React.Component{
                 <input type="text" placeholder="New Card Details" value={this.state.content} onChange={e => {
                     this.setState({content: e.target.value});
                 }}/>
-                <button type="submit">Save</button>
-                <button onClick={e => {
+                <button className="primary-btn" type="submit">Save</button>
+                <button className="close-btn" onClick={e => {
                     e.preventDefault();
                     this.props.createMode();
                 }}>x</button>

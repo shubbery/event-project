@@ -43,6 +43,9 @@ class AppLayout extends React.Component {
             this.setState({
                 user: null
             });
+        })
+        .then(() => {
+            document.location.replace('/');
         });
         
     }
