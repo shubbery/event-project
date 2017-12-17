@@ -181,32 +181,47 @@ class EventPage extends React.Component {
                 <div className="event-page__guests">
                     <div className="attending">
                         <h2>Attending</h2>
-                        <ul className="user-list">
-                            {this.state.attending ? this.state.attending.map(user => {
+                            {/* {this.state.attending ? this.state.attending.map(user => {
                                 this.getUser(user, "attending");
-                            }) : null}
-                            <li><p>Leia Organa</p></li>
-                            <li><p>Finn, just Finn</p></li>
-                        </ul>
+                            }) : null} */}
+                        { this.props.match.params.eventId === '5a31d30e7226143a41f447ba' 
+                        ?
+                            <ul className="user-list">
+                                <li><p>Leia Organa</p></li>
+                                <li><p>Finn, just Finn</p></li>
+                            </ul>
+                        :
+                            null
+                        }
                     </div>
                     <div className="notAttending">
                         <h2>Not Attending</h2>
-                        <ul className="user-list">
-                            {this.state.notAttending.map(user => {
-                                this.getUser(user, "notAttending");
-                            })}
-                            <li><p>Kylo Ren</p></li>
-                        </ul>
+                        { this.props.match.params.eventId === '5a31d30e7226143a41f447ba' 
+                        ?
+                            <ul className="user-list">
+                                <li><p>Kylo Ren</p></li>
+                            </ul>
+                        :
+                            null
+                        }
+                        {/* {this.state.notAttending.map(user => {
+                            this.getUser(user, "notAttending");
+                        })} */}
                     </div>
                     <div className="invitees">
                         <h2>Not Responded</h2>
-                        <ul className="user-list">
-                            {this.state.invitees.map(user => {
-                                this.getUser(user, "invitees");
-                            })}
-                            <li><p>Rey from Jakku</p></li>
-                            <li><p>Luke Skywalker</p></li>
-                        </ul>
+                        { this.props.match.params.eventId === '5a31d30e7226143a41f447ba' 
+                        ?
+                            <ul className="user-list">
+                                <li><p>Rey from Jakku</p></li>
+                                <li><p>Luke Skywalker</p></li>
+                            </ul>
+                        :
+                            null
+                        }
+                        {/* {this.state.invitees.map(user => {
+                            this.getUser(user, "invitees");
+                        })} */}
                     </div>
                     {/* <UserList listType="attending" listTitle="Attending" users={this.state.attending}/>
                     <UserList listType="notAttending" listTitle="Not Attending" users={this.state.notAttending}/>
